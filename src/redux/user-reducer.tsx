@@ -5,7 +5,7 @@ import { usersAPI } from '../api/users';
 
 let initialState = {
     user: {
-        id: 1,
+        id: 0,
         name: 'Name',
         email: 'Email',
         status: 'status',
@@ -36,8 +36,7 @@ export const getUserInfo = (id: number): ThunkType => {
 
     return async (dispatch) => {
         let data = await usersAPI.userInfo(id)
-        console.log(typeof data.data);
-        dispatch(actions.setUser(data.data))
+        dispatch(actions.setUser(data.data[0]))
     }
 }
 

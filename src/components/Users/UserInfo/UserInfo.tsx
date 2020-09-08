@@ -27,7 +27,7 @@ class UserInfo extends React.Component<PropsType> {
     }
 
     render() {
-        console.log(this.props.user.id);
+        console.log('1');
         return (
             <ul className={styles.user}>
                 <li>{this.props.user.id}</li>

@@ -1,4 +1,4 @@
-import { instance, GetItemsType, GetItemType } from './api';
+import { instance, GetItemsType } from './api';
 import { usersType } from '../types/types';
 
 
@@ -8,7 +8,7 @@ export const usersAPI = {
             .then(res => res.data)
     },
     userInfo(id = 1) {
-        return instance.get<GetItemType<usersType>>(`users?id=${id}`)
+        return instance.get<GetItemsType<usersType>>(`users?id=${id}`)
             .then(res => res.data)
     }
 }
