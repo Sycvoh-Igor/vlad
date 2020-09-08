@@ -2,12 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose, Action } from "
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import postsReducer from "./posts-reducer";
 import usersReducer from "./users-reducer";
+import userReducer from "./user-reducer";
 
 
 
 let reducers = combineReducers({
     posts: postsReducer,
-    users: usersReducer
+    users: usersReducer,
+    user: userReducer
 });
 
 type redusersType = typeof reducers;

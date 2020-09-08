@@ -1,11 +1,20 @@
 .usersStyle {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     &__content {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-evenly;
     }
+}
+
+.create {
+    font-size: 2rem;
+    text-decoration: none;
+    padding: 5px;
+    color: blue;
 }

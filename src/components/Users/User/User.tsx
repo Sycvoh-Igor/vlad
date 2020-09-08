@@ -15,7 +15,7 @@ let User: React.FC<PropsType> = ({ user }) => {
             <li>{user.email}</li>
             <li>{user.status}</li>
             <li>{user.gender}</li>
-            <li><NavLink to={'/users/:' + user.id}>Подробнее</NavLink></li>
+            <li><NavLink to={'/users/' + user.id}>Подробнее</NavLink></li>
         </ul>
     )
 }

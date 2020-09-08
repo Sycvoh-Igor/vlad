@@ -4,6 +4,7 @@ import User from './User/User'
 import styles from './Users.module.scss'
 import { usersType } from '../../types/types';
 import Preloader from '../common/preloader/Preloader';
+import { NavLink } from 'react-router-dom';
 
 type PropsType = {
     users: Array<usersType>
@@ -27,6 +28,7 @@ let Users: React.FC<PropsType> = (props) => {
                     )
                 }
             </div>
+            <NavLink className={styles.create} to='/users/create'>Создать пользователя</NavLink>
         </div>
     )
 }

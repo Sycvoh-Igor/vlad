@@ -13,6 +13,12 @@ export type GetItemsType<T> = {
     code: string | null
 }
 
+export type GetItemType<T> = {
+    data: T,
+    meta: metaType,
+    code: string | null
+}
+
 type metaType = {
     pagination: paginationType
 }
