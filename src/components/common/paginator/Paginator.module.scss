@@ -1,0 +1,19 @@
+.page {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0 3px;
+
+    &__selected {
+        font-weight: 900;
+        cursor: pointer;
+        font-size: 20px;
+        margin: 0 3px;
+        color: red;
+    }
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}

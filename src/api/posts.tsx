@@ -1,8 +1,10 @@
-import { instance } from './api';
+import { instance, GetItemsType } from './api';
+import { postType } from '../types/types';
 
 
 export const postsAPI = {
-    posts() {
-        return instance.get<any>(`posts`).then(res => res.data)
+    posts(currentPage = 1) {
+        return instance.get<GetItemsType<postType>>(`posts?page=${currentPage}`)
+            .then(res => res.data)
     }
 }

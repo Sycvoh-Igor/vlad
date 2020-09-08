@@ -1,29 +1,32 @@
 import React from 'react'
 import Paginator from '../common/paginator/Paginator'
 import User from './User/User'
+import styles from './Users.module.scss'
 import { usersType } from '../../types/types';
+import Preloader from '../common/preloader/Preloader';
 
 type PropsType = {
     users: Array<usersType>
     currentPage: number,
     pageSize: number,
     totalUsersCount: number,
-    followingInProgress: Array<number>,
     portionSize: number,
+    isFetching: boolean,
     onPageChanged: (pageNumber: number) => void
 };
 
 let Users: React.FC<PropsType> = (props) => {
-    console.log(props.users);
     return (
-        <div>
+        <div className={styles.usersStyle}>
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
                 totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} portionSize={props.portionSize} />
-            {
-                props.users.map(u =>
-                    <User />
-                )
-            }
+            <div className={styles.usersStyle__content}>
+                {props.isFetching ? <Preloader /> :
+                    props.users.map((u, index) =>
+                        <User user={u} key={`${u.id}_${index}`} />
+                    )
+                }
+            </div>
         </div>
     )
 }

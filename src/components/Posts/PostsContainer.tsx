@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUsersThunkCreator, onPageChangedThunkCreator } from '../../redux/users-reducer';
-import Users from './Users'
-import { usersType } from '../../types/types';
+import { getPostsThunkCreator, onPageChangedThunkCreator } from '../../redux/posts-reducer';
+import Posts from './Posts'
+import { postType } from '../../types/types';
 import { AppStateType } from '../../redux/store';
 
 
 type MapStatePropsType = {
     currentPage: number,
     pageSize: number,
-    users: Array<usersType>,
+    posts: Array<postType>,
     isFetching: boolean,
-    totalUsersCount: number,
+    totalPostsCount: number,
     portionSize: number
 }
 type MapDispatchPropsType = {
-    getUsersThunkCreator: (currentPage: number) => void,
+    getPostsThunkCreator: (currentPage: number) => void,
     onPageChangedThunkCreator: (pageNumber: number) => void,
 }
 type OwnPropsType = {
@@ -24,10 +24,10 @@ type OwnPropsType = {
 
 type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
-class UsersContainer extends React.Component<PropsType> {
+class PostsContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage);
+        this.props.getPostsThunkCreator(this.props.currentPage);
     }
 
     onPageChanged = (pageNumber: number) => {
@@ -37,16 +37,15 @@ class UsersContainer extends React.Component<PropsType> {
     render() {
 
         return <>
-            <Users
+            <Posts
                 currentPage={this.props.currentPage}
                 pageSize={this.props.pageSize}
-                users={this.props.users}
-                totalUsersCount={this.props.totalUsersCount}
+                posts={this.props.posts}
+                totalPostsCount={this.props.totalPostsCount}
                 portionSize={this.props.portionSize}
                 onPageChanged={this.onPageChanged}
                 isFetching={this.props.isFetching}
             />
-
         </>
 
     }
@@ -54,16 +53,16 @@ class UsersContainer extends React.Component<PropsType> {
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        users: state.users.users,
-        pageSize: state.users.pageSize,
-        totalUsersCount: state.users.totalUsersCount,
-        currentPage: state.users.currentPage,
-        isFetching: state.users.isFetching,
-        portionSize: state.users.portionSize
+        posts: state.posts.posts,
+        pageSize: state.posts.pageSize,
+        totalPostsCount: state.posts.totalPostsCount,
+        currentPage: state.posts.currentPage,
+        isFetching: state.posts.isFetching,
+        portionSize: state.posts.portionSize
     }
 }
 
 
 
 export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps,
-    { getUsersThunkCreator, onPageChangedThunkCreator })(UsersContainer)
+    { getPostsThunkCreator, onPageChangedThunkCreator })(PostsContainer)

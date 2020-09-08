@@ -1,5 +1,4 @@
 import axios from "axios";
-import { usersType } from '../types/types';
 
 export const instance = axios.create({
     baseURL: 'https://gorest.co.in/public-api',
@@ -8,8 +7,8 @@ export const instance = axios.create({
     },
 });
 
-export type GetItemsType = {
-    data: Array<usersType>,
+export type GetItemsType<T> = {
+    data: Array<T>,
     meta: metaType,
     code: string | null
 }
