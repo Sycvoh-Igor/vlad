@@ -25,14 +25,14 @@ let Paginator: React.FC<PropsType> = (props) => {
     return (
         <div className={styles.pagination}>
             {portionNumber > 1 &&
-                <button onClick={() => { setPortionNumber(portionNumber - 1) }}>Prev</button>}
+                <button className='btn btn--pagination' onClick={() => { setPortionNumber(portionNumber - 1) }}>Prev</button>}
             {pages.filter(p => p >= leftPortionPageNumber && p <= rigthPortionPageNumber)
                 .map((p) => {
                     return <span className={props.currentPage === p ? styles.page__selected : styles.page}
                         onClick={(e) => { props.onPageChanged(p) }} key={p}>{p}</span>
                 })}
             {portionCount > portionNumber &&
-                <button onClick={() => { setPortionNumber(portionNumber + 1) }}>Next</button>}
+                <button className='btn btn--pagination' onClick={() => { setPortionNumber(portionNumber + 1) }}>Next</button>}
         </div>
     )
 }

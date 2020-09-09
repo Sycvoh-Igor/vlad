@@ -18,6 +18,7 @@ type PropsType = {
 let Posts: React.FC<PropsType> = (props) => {
     return (
         <div className={styles.postsStyle}>
+            <h1>Статьи</h1>
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
                 totalItemsCount={props.totalPostsCount} pageSize={props.pageSize} portionSize={props.portionSize} />
             <div className={styles.postsStyle__content}>

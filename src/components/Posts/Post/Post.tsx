@@ -10,10 +10,10 @@ type PropsType = {
 let Post: React.FC<PropsType> = ({ post }) => {
     return (
         <ul className={styles.post}>
-            <li>{post.id}</li>
-            <li>{post.user_id}</li>
-            <li>{post.title}</li>
-            <li><NavLink to={'/posts/:' + post.id}>Подробнее</NavLink></li>
+            <li className={styles.post__item}>{post.id}</li>
+            <li className={styles.post__item}>{post.user_id}</li>
+            <li className={styles.post__item}>{post.title}</li>
+            <li className={styles.post__item}><NavLink className='btn' to={'/posts/:' + post.id}>Подробнее</NavLink></li>
         </ul>
     )
 }

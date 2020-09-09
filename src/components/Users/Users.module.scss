@@ -8,7 +8,8 @@
     &__content {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
+        margin-bottom: 30px;
     }
 }
 
@@ -16,5 +17,13 @@
     font-size: 2rem;
     text-decoration: none;
     padding: 5px;
-    color: blue;
+    color: #fff;
+    background-color: rgb(75, 173, 223);
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    &:hover,
+    &:active {
+        color: #000;
+    }
 }

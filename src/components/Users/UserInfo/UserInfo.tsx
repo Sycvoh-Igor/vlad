@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../User/User.module.scss'
+import styles from './UserInfo.module.scss'
 import { RouteComponentProps } from 'react-router-dom';
 import { AppStateType } from '../../../redux/store';
 import { getUserInfo } from '../../../redux/user-reducer';
@@ -10,6 +10,7 @@ class UserInfo extends React.Component<PropsType> {
 
     refreshUser() {
         let userId: number | null = +this.props.match.params.id
+
         if (!userId) {
             console.log("ID should exist in ULR or in state")
         } else {
@@ -27,17 +28,20 @@ class UserInfo extends React.Component<PropsType> {
     }
 
     render() {
-        console.log('1');
+
         return (
-            <ul className={styles.user}>
-                <li>{this.props.user.id}</li>
-                <li>{this.props.user.name}</li>
-                <li>{this.props.user.email}</li>
-                <li>{this.props.user.status}</li>
-                <li>{this.props.user.gender}</li>
-                <li>{this.props.user.created_at}</li>
-                <li>{this.props.user.updated_at}</li>
-            </ul>
+
+            <div className='center'>
+                <h1>Пользователь {this.props.user.name}</h1>
+                <ul className={styles.userInfo}>
+                    <li className={styles.userInfo__item}>Пользователь id:{this.props.user.id}</li>
+                    <li className={styles.userInfo__item}>Статус: {this.props.user.status}</li>
+                    <li className={styles.userInfo__item}>Пол: {this.props.user.gender}</li>
+                    <li className={styles.userInfo__item}>Email: {this.props.user.email}</li>
+                    <li className={styles.userInfo__item}>Создан: {this.props.user.created_at}</li>
+                    <li className={styles.userInfo__item}>Обновлен: {this.props.user.updated_at}</li>
+                </ul>
+            </div>
         )
     }
 }

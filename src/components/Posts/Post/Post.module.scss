@@ -1,12 +1,38 @@
 .post {
+    width: 30%;
     display: flex;
-    width: 20%;
     flex-direction: column;
     padding: 20px;
     margin: 0.5%;
-    background-color: darkgrey;
+    background-color: #fff;
+    border-radius: 10px;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     list-style: none;
     font-size: 1.6rem;
+    overflow: hidden;
+
+    &__item {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        padding: 0 5px;
+        width: 90%;
+    }
+
+    .btn {
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .post {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 756px) {
+    .post {
+        width: 80%;
+    }
 }

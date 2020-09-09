@@ -19,6 +19,7 @@ type PropsType = {
 let Users: React.FC<PropsType> = (props) => {
     return (
         <div className={styles.usersStyle}>
+            <h1>Пользователи</h1>
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
                 totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} portionSize={props.portionSize} />
             <div className={styles.usersStyle__content}>

@@ -10,12 +10,12 @@ type PropsType = {
 let User: React.FC<PropsType> = ({ user }) => {
     return (
         <ul className={styles.user}>
-            <li>{user.id}</li>
-            <li>{user.name}</li>
-            <li>{user.email}</li>
-            <li>{user.status}</li>
-            <li>{user.gender}</li>
-            <li><NavLink to={'/users/' + user.id}>Подробнее</NavLink></li>
+            <li className={styles.user__item}>Пользователь id:{user.id}</li>
+            <li className={styles.user__item}>Имя:{user.name}</li>
+            <li className={styles.user__item}>Email:{user.email}</li>
+            <li className={styles.user__item}>Статус:{user.status}</li>
+            <li className={styles.user__item}>Пол:{user.gender}</li>
+            <li className={styles.user__item}><NavLink className='btn' to={'/users/' + user.id}>Подробнее</NavLink></li>
         </ul>
     )
 }

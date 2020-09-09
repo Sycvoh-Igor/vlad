@@ -1,0 +1,14 @@
+.userInfo {
+    background-color: #fff;
+    border-radius: 10px;
+    list-style: none;
+    font-size: 2rem;
+    text-align: center;
+    padding: 20px;
+    max-width: 60%;
+    margin: 0 auto;
+
+    &__item {
+        margin-bottom: 10px;
+    }
+}
