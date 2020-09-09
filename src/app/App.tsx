@@ -3,7 +3,7 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import UsersContainer from '../components/Users/UsersContainer';
-import PostsContainer from '../components/Posts/PostsContainer';
+import PostsList from '../features/Posts/PostList';
 import UserInfo from '../components/Users/UserInfo/UserInfo';
 import UserForm from '../components/Users/UserForm/UserForm';
 
@@ -60,7 +60,7 @@ function App() {
               <Route exact path='/users' component={UsersContainer} />
               <Route exact path='/users/create' component={UserForm} />
               <Route path='/users/:id?' component={UserInfo} />
-              <Route path='/posts/' component={PostsContainer} />
+              <Route path='/posts/' component={PostsList} />
             </Switch>
           </main>
         </div >
