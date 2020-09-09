@@ -18,6 +18,12 @@
         margin: 5px 0;
         padding: 0 5px;
         width: 90%;
+
+        &:last-child {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+        }
     }
 
     .btn {

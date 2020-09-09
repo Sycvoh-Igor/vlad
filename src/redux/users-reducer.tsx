@@ -10,6 +10,7 @@ let initialState = {
     currentPage: 1,
     isFetching: false,
     portionSize: 10,
+    filterOption: 'name'
 };
 
 const usersReducer = (state = initialState, action: ActionsTypes): initialStateType => {

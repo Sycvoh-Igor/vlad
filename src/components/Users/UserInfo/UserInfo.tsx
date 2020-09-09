@@ -28,20 +28,21 @@ class UserInfo extends React.Component<PropsType> {
     }
 
     render() {
-
-        return (
-
-            <div className='center'>
-                <h1>Пользователь {this.props.user.name}</h1>
-                <ul className={styles.userInfo}>
-                    <li className={styles.userInfo__item}>Пользователь id:{this.props.user.id}</li>
-                    <li className={styles.userInfo__item}>Статус: {this.props.user.status}</li>
-                    <li className={styles.userInfo__item}>Пол: {this.props.user.gender}</li>
-                    <li className={styles.userInfo__item}>Email: {this.props.user.email}</li>
-                    <li className={styles.userInfo__item}>Создан: {this.props.user.created_at}</li>
-                    <li className={styles.userInfo__item}>Обновлен: {this.props.user.updated_at}</li>
-                </ul>
-            </div>
+        return (<>
+            {this.props.user.id !== +this.props.match.params.id ? <> </> :
+                <div className='center'>
+                    <h1>Пользователь {this.props.user.name}</h1>
+                    <ul className={styles.userInfo}>
+                        <li className={styles.userInfo__item}>Пользователь id:{this.props.user.id}</li>
+                        <li className={styles.userInfo__item}>Статус: {this.props.user.status}</li>
+                        <li className={styles.userInfo__item}>Пол: {this.props.user.gender}</li>
+                        <li className={styles.userInfo__item}>Email: {this.props.user.email}</li>
+                        <li className={styles.userInfo__item}>Создан: {this.props.user.created_at}</li>
+                        <li className={styles.userInfo__item}>Обновлен: {this.props.user.updated_at}</li>
+                    </ul>
+                </div>
+            }
+        </>
         )
     }
 }

@@ -13,6 +13,7 @@ type MapStatePropsType = {
     isFetching: boolean,
     totalUsersCount: number,
     portionSize: number
+    filterOption: string
 }
 type MapDispatchPropsType = {
     getUsersThunkCreator: (currentPage: number) => void,
@@ -45,6 +46,7 @@ class UsersContainer extends React.Component<PropsType> {
                 portionSize={this.props.portionSize}
                 onPageChanged={this.onPageChanged}
                 isFetching={this.props.isFetching}
+                filterOption={this.props.filterOption}
             />
 
         </>
@@ -59,7 +61,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         totalUsersCount: state.users.totalUsersCount,
         currentPage: state.users.currentPage,
         isFetching: state.users.isFetching,
-        portionSize: state.users.portionSize
+        portionSize: state.users.portionSize,
+        filterOption: state.users.filterOption
     }
 }
 

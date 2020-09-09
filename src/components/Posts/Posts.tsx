@@ -28,6 +28,8 @@ let Posts: React.FC<PropsType> = (props) => {
                     )
                 }
             </div>
+            <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
+                totalItemsCount={props.totalPostsCount} pageSize={props.pageSize} portionSize={props.portionSize} />
         </div>
     )
 }

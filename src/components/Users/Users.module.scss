@@ -9,7 +9,6 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        margin-bottom: 30px;
     }
 }
 
@@ -25,5 +24,43 @@
     &:hover,
     &:active {
         color: #000;
+    }
+}
+
+.filter {
+    width: 100%;
+    max-width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    font-size: 1.6rem;
+
+    span {
+        font-size: 1.6rem;
+        background-color: rgb(75, 173, 223);
+        padding: 5px 20px;
+        border-radius: 10px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    &__items {
+        position: absolute;
+        top: 100%;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__link {
+        background-color: rgb(75, 173, 223);
+        padding: 5px 10px;
+        width: 100%;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover,
+        &:active {
+            color: #000;
+        }
     }
 }
