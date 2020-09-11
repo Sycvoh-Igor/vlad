@@ -11,7 +11,7 @@ type MapStatePropsType = {
     pageSize: number,
     posts: Array<postType>,
     isFetching: boolean,
-    totalPostsCount: number,
+    total: number,
     portionSize: number
 }
 type MapDispatchPropsType = {
@@ -41,7 +41,7 @@ class PostsContainer extends React.Component<PropsType> {
                 currentPage={this.props.currentPage}
                 pageSize={this.props.pageSize}
                 posts={this.props.posts}
-                totalPostsCount={this.props.totalPostsCount}
+                total={this.props.total}
                 portionSize={this.props.portionSize}
                 onPageChanged={this.onPageChanged}
                 isFetching={this.props.isFetching}
@@ -55,7 +55,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         posts: state.posts.posts,
         pageSize: state.posts.pageSize,
-        totalPostsCount: state.posts.totalPostsCount,
+        total: state.posts.totalPostsCount,
         currentPage: state.posts.currentPage,
         isFetching: state.posts.isFetching,
         portionSize: state.posts.portionSize

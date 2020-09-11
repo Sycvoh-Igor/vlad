@@ -16,3 +16,18 @@ export type postType = {
     created_at: string,
     updated_at: string
 }
+
+export interface Pagination {
+    total: number,
+    pages: number,
+    page: number,
+    limit: number
+}
+
+export interface ResponseList<T> {
+    data: T[],
+    meta: {
+        pagination: Pagination,
+    },
+    code: number
+}

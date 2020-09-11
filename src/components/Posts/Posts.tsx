@@ -1,15 +1,15 @@
 import React from 'react'
-import Paginator from '../common/paginator/Paginator'
 import Post from './Post/Post'
 import styles from './Posts.module.scss'
 import { postType } from '../../types/types';
-import Preloader from '../common/preloader/Preloader';
+import Preloader from '../preloader/Preloader';
+import Paginator from 'components/paginator';
 
 type PropsType = {
     posts: Array<postType>
     currentPage: number,
     pageSize: number,
-    totalPostsCount: number,
+    total: number,
     portionSize: number,
     isFetching: boolean,
     onPageChanged: (pageNumber: number) => void
@@ -19,8 +19,8 @@ let Posts: React.FC<PropsType> = (props) => {
     return (
         <div className={styles.postsStyle}>
             <h1>Статьи</h1>
-            <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
-                totalItemsCount={props.totalPostsCount} pageSize={props.pageSize} portionSize={props.portionSize} />
+            {/* <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
+                total={props.total} pageSize={props.pageSize} portionSize={props.portionSize} />
             <div className={styles.postsStyle__content}>
                 {props.isFetching ? <Preloader /> :
                     props.posts.map((u, index) =>
@@ -29,7 +29,7 @@ let Posts: React.FC<PropsType> = (props) => {
                 }
             </div>
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
-                totalItemsCount={props.totalPostsCount} pageSize={props.pageSize} portionSize={props.portionSize} />
+                total={props.total} pageSize={props.pageSize} portionSize={props.portionSize} /> */}
         </div>
     )
 }

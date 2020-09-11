@@ -1,16 +1,16 @@
 import React from 'react'
-import Paginator from '../common/paginator/Paginator'
 import User from './User/User'
 import styles from './Users.module.scss'
 import { usersType } from '../../types/types';
-import Preloader from '../common/preloader/Preloader';
+import Preloader from '../preloader/Preloader';
 import { NavLink } from 'react-router-dom';
+import Paginator from 'components/paginator';
 
 type PropsType = {
     users: Array<usersType>
     currentPage: number,
     pageSize: number,
-    totalUsersCount: number,
+    total: number,
     portionSize: number,
     isFetching: boolean,
     filterOption: string,
@@ -64,7 +64,7 @@ let Users: React.FC<PropsType> = (props) => {
 
     return (
         <div className={styles.usersStyle}>
-            <h1>Пользователи</h1>
+            {/* <h1>Пользователи</h1>
             <div className={styles.filter}>
                 <div className={styles.filter__popup} ref={refSort}>
                     <b>Сортировка по:</b>
@@ -83,7 +83,7 @@ let Users: React.FC<PropsType> = (props) => {
             </div>
 
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
-                totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} portionSize={props.portionSize} />
+                total={props.total} pageSize={props.pageSize} portionSize={props.portionSize} />
             <div className={styles.usersStyle__content}>
                 {props.isFetching ? <Preloader /> :
                     props.users.map((u, index) =>
@@ -92,8 +92,8 @@ let Users: React.FC<PropsType> = (props) => {
                 }
             </div>
             <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged}
-                totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} portionSize={props.portionSize} />
-            <NavLink className={styles.create} to='/users/create'>Создать пользователя</NavLink>
+                total={props.total} pageSize={props.pageSize} portionSize={props.portionSize} />
+            <NavLink className={styles.create} to='/users/create'>Создать пользователя</NavLink> */}
         </div>
     )
 }
