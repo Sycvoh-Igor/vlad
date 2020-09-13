@@ -3,7 +3,7 @@ import {
     FETCH_REQUEST,
     FETCH_RESPONSE,
 } from './constants'
-import { UserState } from "./types";
+import { UsersState } from "./types";
 import { UsersActions } from "./actions";
 
 
@@ -12,11 +12,13 @@ const initialState = {
     total: 0,
     page: 1,
     totalPages: 1,
+    limit: 20,
     fetching: false,
     error: false,
-} as UserState;
+    filterOption: 'name'
+} as UsersState;
 
-const usersReducer = (state: UserState = initialState, action: UsersActions): UserState => {
+const usersReducer = (state: UsersState = initialState, action: UsersActions): UsersState => {
     switch (action.type) {
         case FETCH_REQUEST: {
             return { ...state, fetching: true, error: false }
@@ -34,6 +36,7 @@ const usersReducer = (state: UserState = initialState, action: UsersActions): Us
                         page,
                         pages,
                         total,
+                        limit
                     }
                 },
             } = action.payload
@@ -44,6 +47,7 @@ const usersReducer = (state: UserState = initialState, action: UsersActions): Us
                 data,
                 total,
                 page,
+                limit,
                 totalPages: pages,
             }
         }

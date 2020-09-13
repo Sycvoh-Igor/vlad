@@ -22,6 +22,7 @@ export interface PostState {
     total: number,
     page: number,
     totalPages: number,
+    limit: number,
     fetching: boolean,
     error: boolean,
 }

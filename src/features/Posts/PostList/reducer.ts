@@ -12,6 +12,7 @@ const initialState = {
     total: 0,
     page: 1,
     totalPages: 1,
+    limit: 20,
     fetching: false,
     error: false,
 } as PostState;
@@ -34,6 +35,7 @@ const postsReducer = (state: PostState = initialState, action: PostsActions): Po
                         page,
                         pages,
                         total,
+                        limit
                     }
                 },
             } = action.payload
@@ -44,6 +46,7 @@ const postsReducer = (state: PostState = initialState, action: PostsActions): Po
                 data,
                 total,
                 page,
+                limit,
                 totalPages: pages,
             }
         }

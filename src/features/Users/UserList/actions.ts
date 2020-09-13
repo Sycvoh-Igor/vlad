@@ -5,7 +5,7 @@ import {
     FETCH_REQUEST,
     FETCH_RESPONSE,
 } from './constants'
-import { User } from "./types";
+import { User, metaType } from './types';
 import { createAction, createActionWithPayload } from "utils/redux";
 import { RootState } from "app/store";
 import { instance } from "api/api";
@@ -19,12 +19,11 @@ export const fetchResponse = createActionWithPayload<typeof FETCH_RESPONSE, Resp
 export const fetchUsers = (page: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
     dispatch(fetchRequest())
     try {
-        const { data } = await instance.get<{ data: ResponseList<User> }>(`users`, {
+        const { data } = await instance.get<{ data: User[], meta: metaType, code: number }>(`users`, {
             params: {
                 page,
             }
         });
-        // @ts-ignore
         dispatch(fetchResponse(data));
     } catch {
         dispatch(fetchError())

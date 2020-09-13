@@ -18,21 +18,18 @@ export interface User {
     updated_at: string
 }
 
-export interface UserState {
+export interface UsersState {
     data: Array<User>,
     total: number,
     page: number,
     totalPages: number,
+    limit: number,
     fetching: boolean,
     error: boolean,
+    filterOption: string
 }
 
-export interface UserResponse {
-    data: User[],
-    meta: metaType
-}
-
-type metaType = {
+export type metaType = {
     pagination: paginationType
 }
 type paginationType = {
@@ -41,4 +38,5 @@ type paginationType = {
     page: number,
     limit: number
 }
+
 

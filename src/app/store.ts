@@ -2,12 +2,10 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
 import posts from "../features/Posts/reducer";
 import users from "../features/Users/reducer";
-import userReducer from "../redux/user-reducer";
 
 const reducers = combineReducers({
     posts: posts,
-    users: users,
-    user: userReducer
+    users: users
 });
 
 export type RootState = ReturnType<typeof reducers>
