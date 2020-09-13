@@ -23,7 +23,10 @@ let UserInfo: React.FC = () => {
 
     return (
         <div className='center'>
-            { error ? <div>Что-то пошло не так</div> :
+            { error ? <>
+                <div>Что-то пошло не так</div>
+                <button onClick={() => getUser(id)}>Перезагрузить</button>
+            </> :
                 <>
                     {fetching ? <Preloader /> :
                         data.map((data) =>

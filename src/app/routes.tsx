@@ -1,4 +1,5 @@
 
+import PostInfo from 'features/Posts/PostInfo'
 import PostsList from 'features/Posts/PostList'
 import UserForm from 'features/Users/UserForm/UserForm'
 import UserInfo from 'features/Users/UserInfo'
@@ -14,7 +15,8 @@ export const Routes = () => {
             <Route exact path='/users' component={UsersList} />
             <Route exact path='/users/create' component={UserForm} />
             <Route path='/users/:id?' component={UserInfo} />
-            <Route path='/posts/' component={PostsList} />
+            <Route exact path='/posts/' component={PostsList} />
+            <Route path='/posts/:id?' component={PostInfo} />
         </Switch>
 
     )

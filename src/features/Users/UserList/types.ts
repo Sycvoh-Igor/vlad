@@ -39,4 +39,10 @@ type paginationType = {
     limit: number
 }
 
+export type filterType = {
+    name: string,
+    type: string,
+    option?: string
+}
+
 

@@ -13,7 +13,7 @@ let Post: React.FC<PropsType> = ({ post }) => {
             <li className={styles.post__item}>{post.id}</li>
             <li className={styles.post__item}>{post.user_id}</li>
             <li className={styles.post__item}>{post.title}</li>
-            <li className={styles.post__item}><NavLink className='btn' to={'/posts/:' + post.id}>Подробнее</NavLink></li>
+            <li className={styles.post__item}><NavLink className='btn' to={'/posts/' + post.id}>Подробнее</NavLink></li>
         </ul>
     )
 }

@@ -25,6 +25,7 @@ export interface PostState {
     limit: number,
     fetching: boolean,
     error: boolean,
+    filterOption: string
 }
 
 export interface PostResponse {
@@ -40,5 +41,10 @@ type paginationType = {
     pages: number,
     page: number,
     limit: number
+}
+
+export type filterType = {
+    name: string,
+    type: string
 }
 

@@ -15,7 +15,7 @@ const initialState = {
     limit: 20,
     fetching: false,
     error: false,
-    filterOption: 'name'
+    filterOption: 'nofilter'
 } as UsersState;
 
 const usersReducer = (state: UsersState = initialState, action: UsersActions): UsersState => {

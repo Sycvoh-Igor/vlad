@@ -8,7 +8,6 @@ import Header from 'features/Header';
 
 function App() {
 
-
   return (
     <Provider store={store}>
       <div className="App">
