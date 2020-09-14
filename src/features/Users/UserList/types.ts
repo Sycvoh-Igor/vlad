@@ -26,7 +26,13 @@ export interface UsersState {
     limit: number,
     fetching: boolean,
     error: boolean,
-    filterOption: string
+    filterOption: FilterOption
+}
+
+export interface FilterOption {
+    name: string,
+    gender: string,
+    status: string
 }
 
 export type metaType = {

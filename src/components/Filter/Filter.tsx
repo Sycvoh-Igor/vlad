@@ -7,15 +7,15 @@ let Filter: React.FC<PropsType> = ({ items, filterOption }) => {
     const refSort = React.useRef(null)
 
 
+    const activeLabel = filterOption.name
+    // const activeLabel = ensure(items.find((obj) => obj.type === filterOption.name)).name
 
-    const activeLabel = ensure(items.find((obj) => obj.type === filterOption)).name
-
-    function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
-        if (argument === undefined || argument === null) {
-            throw new TypeError(message);
-        }
-        return argument;
-    }
+    // function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
+    //     if (argument === undefined || argument === null) {
+    //         throw new TypeError(message);
+    //     }
+    //     return argument;
+    // }
 
     const togglePopUp = () => {
         setPopUp(!popUp)

@@ -15,7 +15,11 @@ const initialState = {
     limit: 20,
     fetching: false,
     error: false,
-    filterOption: 'nofilter'
+    filterOption: {
+        name: '',
+        gender: '',
+        status: ''
+    }
 } as PostState;
 
 const postsReducer = (state: PostState = initialState, action: PostsActions): PostState => {

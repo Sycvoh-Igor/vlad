@@ -2,6 +2,7 @@ import {
     FETCH_ERROR,
     FETCH_REQUEST,
     FETCH_RESPONSE,
+    FILTER
 } from './constants'
 import { UsersState } from "./types";
 import { UsersActions } from "./actions";
@@ -15,7 +16,11 @@ const initialState = {
     limit: 20,
     fetching: false,
     error: false,
-    filterOption: 'nofilter'
+    filterOption: {
+        name: '',
+        gender: '',
+        status: ''
+    }
 } as UsersState;
 
 const usersReducer = (state: UsersState = initialState, action: UsersActions): UsersState => {
@@ -50,6 +55,9 @@ const usersReducer = (state: UsersState = initialState, action: UsersActions): U
                 limit,
                 totalPages: pages,
             }
+        }
+        case FILTER: {
+            return { ...state, filterOption: action.payload }
         }
 
         default:

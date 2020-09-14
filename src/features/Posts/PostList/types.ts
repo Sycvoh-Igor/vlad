@@ -25,7 +25,13 @@ export interface PostState {
     limit: number,
     fetching: boolean,
     error: boolean,
-    filterOption: string
+    filterOption: FilterOption
+}
+
+interface FilterOption {
+    name: string,
+    gender: string,
+    status: string
 }
 
 export interface PostResponse {

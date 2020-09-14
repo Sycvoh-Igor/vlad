@@ -15,7 +15,6 @@ import { NavLink } from 'react-router-dom';
 
 
 const filterItems: Array<filterType> = [
-    { name: 'Нет фильтрации', type: 'nofilter' },
     { name: 'Имя пользователя', type: 'name' },
     { name: 'Мужчина', type: 'gender', option: 'male' },
     { name: 'Женщина', type: 'gender', option: 'female' },

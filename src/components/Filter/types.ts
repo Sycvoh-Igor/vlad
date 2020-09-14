@@ -1,7 +1,13 @@
 
 export type PropsType = {
     items: Array<filterType>,
-    filterOption: string
+    filterOption: FilterOption
+}
+
+interface FilterOption {
+    name: string,
+    gender: string,
+    status: string
 }
 
 type filterType = {

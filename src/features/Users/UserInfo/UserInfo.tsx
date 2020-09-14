@@ -62,7 +62,7 @@ let UserInfo: React.FC = () => {
                     {modalOpen && <div className={styles.modal}>
                         <h2>Вы действительно хотите удалить пользователя?</h2>
                         <div className={styles.modal__btns}>
-                            <NavLink to={'/users/'} className='btn btn--lg'
+                            <NavLink to={'/users'} className='btn btn--lg'
                                 onClick={deleteCurrentUser} >Да</NavLink>
                             <button className='btn btn--lg' onClick={toggleOpenModal}>Отмена</button>
                         </div>
