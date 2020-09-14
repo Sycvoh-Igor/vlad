@@ -10,6 +10,7 @@ import Filter from 'components/Filter';
 import { filterType } from './types';
 import styles from './UsersList.module.scss'
 import { NavLink } from 'react-router-dom';
+// import Card from 'components/Card';
 
 
 
@@ -47,7 +48,7 @@ let UsersList: React.FC = React.memo((props) => {
                     {fetching ? <Preloader /> :
                         data.map((u) =>
                             <User user={u} key={`${u.id}`} />
-                            // <Card data={u} route='users' key={`${u.id}`} />
+                            // <Card<User> data={u} route='users' key={`${u.id}`} />
                         )
                     }
                 </div>

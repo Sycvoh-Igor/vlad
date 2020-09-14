@@ -43,6 +43,15 @@ a {
     }
 }
 
+button:disabled {
+    opacity: 0.5;
+
+    &:hover,
+    &:active {
+        color: #fff;
+    }
+}
+
 .App {
     background-color: rgb(104, 207, 106);
     min-height: 100vh;
