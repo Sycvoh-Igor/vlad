@@ -7,27 +7,7 @@ export const instance = axios.create({
     },
 });
 
-export type GetItemsType<T> = {
-    data: Array<T>,
-    meta: metaType,
-    code: string | null
-}
 
-// export type GetItemType<T> = {
-//     data: T,
-//     meta: metaType,
-//     code: string | null
-// }
-
-type metaType = {
-    pagination: paginationType
-}
-type paginationType = {
-    total: number,
-    pages: number,
-    page: number,
-    limit: number
-}
 
 
 

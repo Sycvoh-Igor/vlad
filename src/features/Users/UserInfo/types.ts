@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface UserState {
-    data: Array<User>,
+    data: Array<User> | null,
     fetching: boolean,
     error: boolean,
 }
