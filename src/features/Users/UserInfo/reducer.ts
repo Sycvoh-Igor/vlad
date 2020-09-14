@@ -10,6 +10,7 @@ import { UserActions } from "./actions";
 const initialState = {
     data: [],
     fetching: false,
+    deleting: false,
     error: false,
 } as UserState;
 
