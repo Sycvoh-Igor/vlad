@@ -3,20 +3,23 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Routes } from './routes';
 import Header from 'features/Header';
+import { BrowserRouter } from 'react-router-dom';
 
 
 
 function App() {
 
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Header />
-        <main>
-          <Routes />
-        </main>
-      </div >
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <div className="App">
+          <Header />
+          <main>
+            <Routes />
+          </main>
+        </div >
+      </Provider>
+    </BrowserRouter>
   );
 }
 

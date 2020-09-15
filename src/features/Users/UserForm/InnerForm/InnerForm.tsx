@@ -21,22 +21,19 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
                     <label className={styles.label}>Name</label>
                     <Field
                         className={styles.input}
-                        width={50}
                         type="text"
                         name="name"
-                        value={values.name}
                     />
-                    <ErrorMessage name="name" />
+                    <ErrorMessage name="name" component='div' className={styles.error} />
                 </div>
                 <div className={styles.form__item}>
                     <label className={styles.label}>Email</label>
                     <Field
                         className={styles.input}
-                        width={50}
                         type="email"
                         name="email"
                     />
-                    <ErrorMessage name="email" />
+                    <ErrorMessage name="email" component='div' className={styles.error} />
                 </div>
                 <div className={styles.form__item}>
                     <div id="my-radio-group">Status</div>
@@ -54,7 +51,7 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
                                 value="inactive" />
                         Female
                         </label>
-                        <ErrorMessage name="status" />
+                        <ErrorMessage name="status" component='div' className={styles.error} />
                     </div>
                 </div>
                 <div className={styles.form__item}>
@@ -73,13 +70,13 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
                             />
                         Female
                         </label>
-                        <ErrorMessage name="status" />
+                        <ErrorMessage name="status" component='div' className={styles.error} />
                     </div>
                 </div>
                 <button className='btn btn--lg'
                     type="submit"
                     disabled={
-                        isSubmitting || isValid
+                        isSubmitting || !isValid
                     }
                 >
                     Create

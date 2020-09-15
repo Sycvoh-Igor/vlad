@@ -3,12 +3,12 @@ import Preloader from 'components/preloader/Preloader';
 import { RootState } from "app/store";
 import { useDispatch, useSelector } from "react-redux";
 import Paginator from 'components/paginator';
-import Post from 'components/Post/Post';
 import { fetchPosts } from './actions';
 import Title from 'components/Title';
 import Filter from 'components/Filter';
 import { filterType } from './types';
 import styles from './PostsList.module.scss'
+import Post from './components/Post';
 
 
 const filterItems: Array<filterType> = [
@@ -28,16 +28,18 @@ let PostsList: React.FC = () => {
         onClickPageChange(page)
     }, [])
     return (
-        <div className={styles.postsStyle}>
+        <div className={styles.root}>
             <Title title='Статьи' />
             <Filter items={filterItems} filterOption={filterOption} />
             <Paginator currentPage={page} onPageChanged={onClickPageChange}
                 total={total} pageSize={limit} portionSize={10} />
             { error ? <div>Что-то пошло не так</div> :
-                <div className={styles.postsStyle__content}>
+                <div className={styles.content}>
                     {fetching ? <Preloader /> :
-                        data.map((u) =>
-                            <Post post={u} key={`${u.id}`} />
+                        data.map((data) =>
+                            <div className={styles.item} key={data.id}>
+                                <Post post={data} />
+                            </div>
                         )
                     }
                 </div>

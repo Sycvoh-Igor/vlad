@@ -4,16 +4,18 @@ import { RootState } from 'app/store';
 import styles from './PostInfo.module.scss'
 import Preloader from 'components/preloader/Preloader';
 import { fetchPost } from './actions';
-import { useParams, withRouter } from 'react-router-dom';
+import { useHistory, useParams, withRouter } from 'react-router-dom';
 import Title from 'components/Title';
+import Post from './components/Post';
 
 
 let PostInfo: React.FC = () => {
     const { data, error, fetching } = useSelector((state: RootState) => state.posts.post)
     const dispatch = useDispatch()
-    const params = useParams();
-    // @ts-ignore
+    const history = useHistory()
+    const params = useParams<{ id: string }>();
     const id = +params.id
+
     const getPost = React.useCallback((id: number) => {
         dispatch(fetchPost(id))
     }, [dispatch])
@@ -21,29 +23,22 @@ let PostInfo: React.FC = () => {
     React.useEffect(() => {
         getPost(id)
     }, [getPost, id])
-    console.log(data);
     return (
-        <div className='center'>
+        <div className={styles.root}>
             { error ? <>
                 <div>Что-то пошло не так</div>
                 <button onClick={() => getPost(id)}>Перезагрузить</button>
             </> :
-                <>
+                <div className={styles.content}>
                     {fetching ? <Preloader /> :
                         data.map((data) =>
-                            <div key={data.id} >
+                            <div className={styles.info} key={data.id}>
                                 <Title title={data.title} />
-                                <ul className={styles.root}>
-                                    <li className={styles.root__item}>id:{data.id}</li>
-                                    <li className={styles.root__item}>Статья пользователя: {data.user_id}</li>
-                                    <li className={styles.root__item}>Создан: {data.created_at}</li>
-                                    <li className={styles.root__item}>Обновлен: {data.updated_at}</li>
-                                    <li className={styles.root__item}>{data.body}</li>
-                                </ul>
+                                <Post post={data} />
                             </div>
                         )
                     }
-                </>
+                </div>
             }
         </div >
 

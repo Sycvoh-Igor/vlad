@@ -1,21 +1,13 @@
 .root {
     text-align: center;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.userInfo {
-    background-color: #fff;
-    border-radius: 10px;
-    list-style: none;
-    font-size: 2rem;
-    text-align: center;
-    padding: 20px;
-    max-width: 60%;
-    margin: 0 auto;
-
-    &__item {
-        margin-bottom: 10px;
-    }
+.info {
+    width: 80%;
 }
 
 .links {
@@ -32,8 +24,8 @@
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(255, 255, 255);
-    width: 80%;
-    height: 100%;
+    width: 50%;
+    height: 70%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;

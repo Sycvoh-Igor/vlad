@@ -3,13 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './app';
 import './index.scss'
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL + '/'}>
-      <App />
-  </BrowserRouter >,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.unregister();

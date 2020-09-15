@@ -23,7 +23,6 @@ export const fetchPost = (id: number): ThunkAction<void, RootState, unknown, Act
                 id,
             }
         });
-        console.log(data)
         dispatch(fetchResponse(data));
     } catch {
         dispatch(fetchError())

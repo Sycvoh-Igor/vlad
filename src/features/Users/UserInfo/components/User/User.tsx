@@ -13,11 +13,13 @@ let User: React.FC<UserProps> = ({ user }) => {
             { key: 3, label: 'Email', value: user.email },
             { key: 4, label: 'Пол', value: user.gender },
             { key: 5, label: 'Имя', value: user.status },
+            { key: 6, label: 'Создан', value: user.created_at },
+            { key: 7, label: 'Обновлен', value: user.updated_at },
         ],
         [user]
     );
     return (
-        <Card data={data} link={'/users/' + user.id} />
+        <Card data={data} />
     )
 }
 

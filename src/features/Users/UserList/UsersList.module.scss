@@ -1,12 +1,19 @@
-.postsStyle {
+.root {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    &__content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item {
+    width: 30%;
+    display: flex;
+    justify-content: center;
 }

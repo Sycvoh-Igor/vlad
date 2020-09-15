@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Preloader from 'components/preloader/Preloader';
 import { RootState } from "app/store";
 import { useDispatch, useSelector } from "react-redux";
 import Paginator from 'components/paginator';
-import User from 'components/User/User';
 import { fetchUsers } from './actions';
 import Title from 'components/Title';
 import Filter from 'components/Filter';
 import { filterType } from './types';
 import styles from './UsersList.module.scss'
-import { NavLink } from 'react-router-dom';
-// import Card from 'components/Card';
+import { NavLink, useHistory } from 'react-router-dom';
+import User from './components/User';
 
 
 
@@ -22,13 +21,18 @@ const filterItems: Array<filterType> = [
     { name: 'Статус пользователя: не активный', type: 'status', option: 'inactive' }]
 
 
-let UsersList: React.FC = React.memo((props) => {
+let UsersList: React.FC = memo(() => {
     const { page, limit, fetching, data, total, error, filterOption } = useSelector((state: RootState) => state.users.userList)
     const dispatch = useDispatch()
-
+    const history = useHistory()
 
     const onClickPageChange = React.useCallback((currentPage: number) => {
         dispatch(fetchUsers(currentPage))
+        history.push({
+            pathname: '/users',
+            search: `page=${currentPage}`
+        })
+
     }, [dispatch])
 
 
@@ -37,16 +41,18 @@ let UsersList: React.FC = React.memo((props) => {
     }, [])
 
     return (
-        <div className={styles.postsStyle}>
+        <div className={styles.root}>
             <Title title='Пользователи' />
             <Filter items={filterItems} filterOption={filterOption} />
             <Paginator currentPage={page} onPageChanged={onClickPageChange}
                 total={total} pageSize={limit} portionSize={10} />
             { error ? <div>Что-то пошло не так</div> :
-                <div className={styles.postsStyle__content}>
+                <div className={styles.content}>
                     {fetching ? <Preloader /> :
                         data.map((user) =>
-                            <User user={user} key={user.id} />
+                            <div className={styles.item} key={user.id}>
+                                <User user={user} />
+                            </div>
                         )
                     }
                 </div>
