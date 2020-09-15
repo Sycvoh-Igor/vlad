@@ -32,7 +32,6 @@ export const fetchUser = (id: number): ThunkAction<void, RootState, unknown, Act
 export const deleteUser = (id: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
     dispatch(fetchRequest())
     try {
-        console.log(id)
         const { data: { data } } = await instance.delete<{ data: null, meta: null, code: number }>(`users/${id}`);
 
         dispatch(fetchResponse(data));

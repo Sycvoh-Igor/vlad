@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import styles from './Filter.module.scss'
 import { PropsType } from './types';
 
@@ -59,4 +59,4 @@ let Filter: React.FC<PropsType> = ({ items, filterOption }) => {
     )
 }
 
-export default Filter
+export default memo(Filter)

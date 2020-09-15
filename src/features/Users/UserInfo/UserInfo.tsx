@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/store';
 import styles from './UserInfo.module.scss'
@@ -11,12 +11,11 @@ let UserInfo: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false)
     const { data, error, fetching } = useSelector((state: RootState) => state.users.user)
     const dispatch = useDispatch()
-    const params = useParams();
     const history = useHistory()
-    // @ts-ignore
+    const params = useParams<{ id: string }>();
     const id = +params.id
 
-    const getUser = React.useCallback(() => {
+    const getUser = useCallback(() => {
         dispatch(fetchUser(id))
     }, [dispatch, id])
 
@@ -31,7 +30,7 @@ let UserInfo: React.FC = () => {
 
     React.useEffect(() => {
         getUser()
-    }, [getUser, id])
+    }, [getUser])
 
     return (
         <div className={styles.root}>

@@ -45,9 +45,8 @@ let UsersList: React.FC = React.memo((props) => {
             { error ? <div>Что-то пошло не так</div> :
                 <div className={styles.postsStyle__content}>
                     {fetching ? <Preloader /> :
-                        data.map((u) =>
-                            <User user={u} key={`${u.id}`} />
-                            // <Card<User> data={u} route='users' key={`${u.id}`} />
+                        data.map((user) =>
+                            <User user={user} key={user.id} />
                         )
                     }
                 </div>

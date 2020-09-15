@@ -1,19 +1,16 @@
 import React from 'react'
-import { OtherProps, FormValues } from '../types';
-import { Field, FormikProps } from "formik";
+import { FormValues } from '../types';
+import { Field, FormikProps, ErrorMessage } from "formik";
 import styles from './InnerForm.module.scss'
 import Title from 'components/Title';
 
 
-const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
+const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
     const {
         values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
         handleSubmit,
         isSubmitting,
+        isValid
     } = props;
 
     return (
@@ -27,12 +24,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                         width={50}
                         type="text"
                         name="name"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
                         value={values.name}
-                        error={errors.name}
                     />
-                    {errors.name && <div className={styles.error}>{errors.name}</div>}
+                    <ErrorMessage name="name" />
                 </div>
                 <div className={styles.form__item}>
                     <label className={styles.label}>Email</label>
@@ -41,12 +35,8 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                         width={50}
                         type="email"
                         name="email"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
-                        error={errors.email}
                     />
-                    {errors.email && <div className={styles.error}>{errors.email}</div>}
+                    <ErrorMessage name="email" />
                 </div>
                 <div className={styles.form__item}>
                     <div id="my-radio-group">Status</div>
@@ -55,17 +45,16 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                             <Field type="radio"
                                 name="status"
                                 value="active"
-                                error={errors.status} />
+                            />
                          Male
                         </label>
                         <label>
                             <Field type="radio"
                                 name="status"
-                                value="inactive"
-                                error={errors.status} />
+                                value="inactive" />
                         Female
                         </label>
-                        {errors.status && <div className={styles.error}>{errors.status}</div>}
+                        <ErrorMessage name="status" />
                     </div>
                 </div>
                 <div className={styles.form__item}>
@@ -74,29 +63,23 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                         <label>
                             <Field type="radio"
                                 name="gender"
-                                value="male"
-                                error={errors.gender} />
+                                value="male" />
                          Male
                         </label>
                         <label>
                             <Field type="radio"
                                 name="gender"
                                 value="female"
-                                error={errors.gender}
                             />
                         Female
                         </label>
-                        {errors.gender && <div className={styles.error}>{errors.gender}</div>}
+                        <ErrorMessage name="status" />
                     </div>
                 </div>
                 <button className='btn btn--lg'
                     type="submit"
                     disabled={
-                        isSubmitting ||
-                        !!(errors.email && touched.email) ||
-                        !!(errors.name && touched.name) ||
-                        !!(errors.status && touched.status) ||
-                        !!(errors.gender && touched.gender)
+                        isSubmitting || isValid
                     }
                 >
                     Create

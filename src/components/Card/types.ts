@@ -1,5 +1,11 @@
+interface CardItem {
+    key: string | number,
+    label: string
+    value: any,
+}
+export type CardData = CardItem[]
 
-export type CardProps<T> = {
-    data: T,
-    route: 'users' | 'posts'
+export type CardProps = {
+    data: CardData,
+    link?: string
 }
