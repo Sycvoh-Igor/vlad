@@ -4,7 +4,7 @@ import { RootState } from 'app/store';
 import styles from './UserInfo.module.scss'
 import Preloader from 'components/preloader/Preloader';
 import { fetchUser, deleteUser } from './actions';
-import { NavLink, useParams, withRouter } from 'react-router-dom';
+import { NavLink, useHistory, useParams, withRouter } from 'react-router-dom';
 
 
 let UserInfo: React.FC = () => {
@@ -12,6 +12,7 @@ let UserInfo: React.FC = () => {
     const { data, error, fetching } = useSelector((state: RootState) => state.users.user)
     const dispatch = useDispatch()
     const params = useParams();
+    const history = useHistory()
     // @ts-ignore
     const id = +params.id
 
@@ -21,6 +22,7 @@ let UserInfo: React.FC = () => {
 
     const deleteCurrentUser = () => {
         dispatch(deleteUser(id))
+        history.push('/users')
     }
 
     const toggleOpenModal = () => {
@@ -62,8 +64,9 @@ let UserInfo: React.FC = () => {
                     {modalOpen && <div className={styles.modal}>
                         <h2>Вы действительно хотите удалить пользователя?</h2>
                         <div className={styles.modal__btns}>
-                            <NavLink to={'/users'} className='btn btn--lg'
-                                onClick={deleteCurrentUser} >Да</NavLink>
+                            {/* <NavLink to={'/users'} className='btn btn--lg'
+                                onClick={deleteCurrentUser} >Да</NavLink> */}
+                            <button className='btn btn--lg' onClick={deleteCurrentUser}>Да</button>
                             <button className='btn btn--lg' onClick={toggleOpenModal}>Отмена</button>
                         </div>
                     </div>}
