@@ -5,7 +5,7 @@ import {
     FETCH_REQUEST,
     FETCH_RESPONSE,
 } from './constants'
-import { Post } from "./types";
+import { Post, FilterType } from './types';
 import { createAction, createActionWithPayload } from "utils/redux";
 import { RootState } from "app/store";
 import { instance } from "api/api";
@@ -17,12 +17,14 @@ export const fetchError = createAction<typeof FETCH_ERROR>(FETCH_ERROR);
 export const fetchResponse = createActionWithPayload<typeof FETCH_RESPONSE, ResponseList<Post>>(FETCH_RESPONSE);
 
 
-export const fetchPosts = (page: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
+export const fetchPosts = (page: number, filter: FilterType): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
     dispatch(fetchRequest())
     try {
         const { data } = await instance.get<{ data: Post[], meta: metaType, code: number }>(`posts`, {
             params: {
                 page,
+                user_id: filter.userId,
+                title: filter.title
             }
         });
         dispatch(fetchResponse(data));

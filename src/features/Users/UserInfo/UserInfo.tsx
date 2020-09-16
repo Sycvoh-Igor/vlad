@@ -7,6 +7,8 @@ import { fetchUser, deleteUser } from './actions';
 import { NavLink, useHistory, useParams, withRouter } from 'react-router-dom';
 import User from './components/User';
 import Title from 'components/Title';
+import Link from 'components/Link';
+import Button from 'components/Button';
 
 
 let UserInfo: React.FC = () => {
@@ -52,17 +54,14 @@ let UserInfo: React.FC = () => {
                             ) : null
                     }
                     <div className={styles.links}>
-                        <NavLink to={'/users/' + id + '/edit'} className='btn btn--lg'>Редактировать</NavLink>
-                        <button className='btn btn--lg' onClick={toggleOpenModal}>Удалить</button>
-
+                        <Link title='Редактировать' link={'/users/' + id + '/edit'} large />
+                        <Button large onClick={toggleOpenModal} title='Удалить' />
                     </div>
                     {modalOpen && <div className={styles.modal}>
                         <h2>Вы действительно хотите удалить пользователя?</h2>
                         <div className={styles.modal__btns}>
-                            {/* <NavLink to={'/users'} className='btn btn--lg'
-                                onClick={deleteCurrentUser} >Да</NavLink> */}
-                            <button className='btn btn--lg' onClick={deleteCurrentUser}>Да</button>
-                            <button className='btn btn--lg' onClick={toggleOpenModal}>Отмена</button>
+                            <Button large onClick={deleteCurrentUser} title='Да' />
+                            <Button large onClick={toggleOpenModal} title='Отмена' />
                         </div>
                     </div>}
                 </>

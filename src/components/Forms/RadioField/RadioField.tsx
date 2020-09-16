@@ -5,7 +5,7 @@ import styles from './RadioField.module.scss'
 
 const RadioField: React.FC<PropsType> = ({ type, name, value1, value2 }) => {
     return (
-        <div className={styles.item}>
+        <div className={styles.root}>
             <div id="my-radio-group">Status</div>
             <div role="group" aria-labelledby="my-radio-group">
                 <label>

@@ -25,14 +25,9 @@ export interface PostState {
     limit: number,
     fetching: boolean,
     error: boolean,
-    filterOption: FilterOption
+    filterOption: FilterType
 }
 
-interface FilterOption {
-    name: string,
-    gender: string,
-    status: string
-}
 
 export interface PostResponse {
     data: Post[],
@@ -49,8 +44,8 @@ type paginationType = {
     limit: number
 }
 
-export type filterType = {
-    name: string,
-    type: string
+export type FilterType = {
+    userId?: number | null,
+    title?: string
 }
 

@@ -4,7 +4,7 @@ import { PropsType } from './types';
 
 const Error: React.FC<PropsType> = ({ error }) => {
     return (
-        <h1 className={styles.root}>{error}</h1>
+        <div className={styles.root}>{error}</div>
     )
 }
 

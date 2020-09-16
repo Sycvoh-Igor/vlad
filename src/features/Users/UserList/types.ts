@@ -26,13 +26,15 @@ export interface UsersState {
     limit: number,
     fetching: boolean,
     error: boolean,
-    filterOption: FilterOption
+    filterOption: FilterType,
+    creating: boolean,
+    createdUserId: number | null
 }
 
-export interface FilterOption {
-    name: string,
-    gender: string,
-    status: string
+export interface FilterType {
+    name?: string,
+    gender?: string,
+    status?: string
 }
 
 export type metaType = {
@@ -45,10 +47,18 @@ type paginationType = {
     limit: number
 }
 
-export type filterType = {
-    name: string,
-    type: string,
-    option?: string
+export interface FormValues {
+    name: string;
+    email: string;
+    status: string;
+    gender: string;
 }
+
+export interface ResponseCreate {
+    code: number,
+    meta: null,
+    data: User
+}
+
 
 

@@ -2,6 +2,9 @@ import {
     FETCH_ERROR,
     FETCH_REQUEST,
     FETCH_RESPONSE,
+    DELETE_ERROR,
+    DELETE_REQUEST,
+    DELETE_RESPONSE,
 } from './constants'
 import { UserState } from "./types";
 import { UserActions } from "./actions";
@@ -30,6 +33,22 @@ const userReducer = (state: UserState = initialState, action: UserActions): User
                 ...state,
                 fetching: false,
                 error: false,
+                data
+            }
+        }
+        case DELETE_REQUEST: {
+            return { ...state, deleting: true }
+        }
+
+        case DELETE_ERROR: {
+            return { ...state, deleting: false }
+        }
+
+        case DELETE_RESPONSE: {
+            const data = action.payload
+            return {
+                ...state,
+                deleting: false,
                 data
             }
         }
