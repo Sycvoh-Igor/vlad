@@ -25,7 +25,9 @@ export interface PostState {
     limit: number,
     fetching: boolean,
     error: boolean,
-    filterOption: FilterType
+    filterOption: FilterType,
+    creating: boolean,
+    createdPostId: number | null
 }
 
 
@@ -47,5 +49,17 @@ type paginationType = {
 export type FilterType = {
     userId?: number | null,
     title?: string
+}
+
+export interface ResponseCreate {
+    code: number,
+    meta: null,
+    data: Post
+}
+
+export interface FormValues {
+    user_id: number | null;
+    title: string;
+    body: string;
 }
 

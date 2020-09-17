@@ -1,4 +1,6 @@
 
+import PostEdit from 'features/Posts/PostEdit'
+import PostForm from 'features/Posts/PostForm'
 import PostInfo from 'features/Posts/PostInfo'
 import PostsList from 'features/Posts/PostList'
 import UserEdit from 'features/Users/UserEdit/UserEdit'
@@ -17,7 +19,9 @@ export const Routes = () => {
             <Route exact path='/users/:id?' component={UserInfo} />
             <Route path='/users/:id?/edit' component={UserEdit} />
             <Route exact path='/posts/' component={PostsList} />
-            <Route path='/posts/:id?' component={PostInfo} />
+            <Route exact path='/posts/create' component={PostForm} />
+            <Route exact path='/posts/:id?' component={PostInfo} />
+            <Route path='/posts/:id?/edit' component={PostEdit} />
         </Switch>
 
     )

@@ -68,9 +68,6 @@ const usersReducer = (state: UsersState = initialState, action: UsersActions): U
         case CREATE_ERROR: {
             return { ...state, creating: false, error: true }
         }
-        case CLEAN_USER_ID_REQUEST: {
-            return { ...state, createdUserId: null }
-        }
 
         case CREATE_RESPONSE: {
             const { code, data } = action.payload
@@ -80,6 +77,9 @@ const usersReducer = (state: UsersState = initialState, action: UsersActions): U
                 error: false,
                 createdUserId: code === 201 ? data.id : null
             }
+        }
+        case CLEAN_USER_ID_REQUEST: {
+            return { ...state, createdUserId: null }
         }
 
         default:

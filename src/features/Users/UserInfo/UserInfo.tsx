@@ -4,16 +4,17 @@ import { RootState } from 'app/store';
 import styles from './UserInfo.module.scss'
 import Preloader from 'components/preloader/Preloader';
 import { fetchUser, deleteUser } from './actions';
-import { NavLink, useHistory, useParams, withRouter } from 'react-router-dom';
+import { useHistory, useParams, withRouter } from 'react-router-dom';
 import User from './components/User';
 import Title from 'components/Title';
 import Link from 'components/Link';
 import Button from 'components/Button';
 
 
-let UserInfo: React.FC = () => {
+const UserInfo: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false)
     const { data, error, fetching } = useSelector((state: RootState) => state.users.user)
+    const { page } = useSelector((state: RootState) => state.users.userList)
     const dispatch = useDispatch()
     const history = useHistory()
     const params = useParams<{ id: string }>();
@@ -25,7 +26,10 @@ let UserInfo: React.FC = () => {
 
     const deleteCurrentUser = () => {
         dispatch(deleteUser(id))
-        history.push('/users')
+        history.push({
+            pathname: '/users',
+            search: `page=${page}`
+        })
     }
 
     const toggleOpenModal = () => {

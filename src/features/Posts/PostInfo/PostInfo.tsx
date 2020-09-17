@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/store';
 import styles from './PostInfo.module.scss'
 import Preloader from 'components/preloader/Preloader';
-import { fetchPost } from './actions';
+import { fetchPost, deletePost } from './actions';
 import { useHistory, useParams, withRouter } from 'react-router-dom';
 import Title from 'components/Title';
 import Post from './components/Post';
@@ -11,8 +11,9 @@ import Link from 'components/Link';
 import Button from 'components/Button';
 
 
-let PostInfo: React.FC = () => {
+const PostInfo: React.FC = () => {
     const { data, error, fetching } = useSelector((state: RootState) => state.posts.post)
+    const { page } = useSelector((state: RootState) => state.posts.postList)
     const dispatch = useDispatch()
     const [modalOpen, setModalOpen] = useState(false)
     const history = useHistory()
@@ -24,8 +25,11 @@ let PostInfo: React.FC = () => {
     }, [dispatch])
 
     const deleteCurrentPost = () => {
-        // dispatch(deletePost(id))
-        // history.push('/posts')
+        dispatch(deletePost(id))
+        history.push({
+            pathname: '/posts',
+            search: `page=${page}`
+        })
     }
 
     const toggleOpenModal = () => {
@@ -43,12 +47,13 @@ let PostInfo: React.FC = () => {
             </> :
                 <div className={styles.content}>
                     {fetching ? <Preloader /> :
-                        data.map((data) =>
-                            <div className={styles.info} key={data.id}>
-                                <Title title={data.title} />
-                                <Post post={data} />
-                            </div>
-                        )
+                        data ?
+                            data.map((data) =>
+                                <div className={styles.info} key={data.id}>
+                                    <Title title={data.title} />
+                                    <Post post={data} />
+                                </div>
+                            ) : null
                     }
                     <div className={styles.links}>
                         <Link title='Редактировать' link={'/posts/' + id + '/edit'} large />

@@ -3,4 +3,6 @@ export interface PropsType {
     name: string,
     value?: string,
     title?: string
+    component?: string
+    defaultValue?: string
 }

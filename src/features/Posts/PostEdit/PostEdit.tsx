@@ -1,14 +1,14 @@
 import { PropsType } from './types'
 import React from 'react'
-import styles from './UserEdit.module.scss'
+import styles from './PostEdit.module.scss'
 
 
 
-const UserEdit: React.FC<PropsType> = () => {
+const PostEdit: React.FC<PropsType> = () => {
 
     return (
         <div className={styles.root}>Edit</div>
     )
 }
 
-export default UserEdit
+export default PostEdit

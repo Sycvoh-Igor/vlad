@@ -2,6 +2,10 @@ import {
     FETCH_ERROR,
     FETCH_REQUEST,
     FETCH_RESPONSE,
+    CREATE_ERROR,
+    CREATE_REQUEST,
+    CREATE_RESPONSE,
+    CLEAN_POST_ID_REQUEST
 } from './constants'
 import { PostState } from "./types";
 import { PostsActions } from "./actions";
@@ -19,7 +23,9 @@ const initialState = {
         name: '',
         gender: '',
         status: ''
-    }
+    },
+    creating: false,
+    createdPostId: null
 } as PostState;
 
 const postsReducer = (state: PostState = initialState, action: PostsActions): PostState => {
@@ -54,6 +60,26 @@ const postsReducer = (state: PostState = initialState, action: PostsActions): Po
                 limit,
                 totalPages: pages,
             }
+        }
+        case CREATE_REQUEST: {
+            return { ...state, creating: true, error: false }
+        }
+
+        case CREATE_ERROR: {
+            return { ...state, creating: false, error: true }
+        }
+
+        case CREATE_RESPONSE: {
+            const { code, data } = action.payload
+            return {
+                ...state,
+                creating: false,
+                error: false,
+                createdPostId: code === 201 ? data.id : null
+            }
+        }
+        case CLEAN_POST_ID_REQUEST: {
+            return { ...state, createdPostId: null }
         }
 
         default:

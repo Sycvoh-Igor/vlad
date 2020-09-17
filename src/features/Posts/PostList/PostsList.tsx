@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Preloader from 'components/preloader/Preloader';
 import { RootState } from "app/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,19 +9,22 @@ import Filter from './components/Filter'
 import { FilterType } from './types';
 import styles from './PostsList.module.scss'
 import Post from './components/Post';
+import Link from 'components/Link';
+import { useHistory } from 'react-router-dom';
 
 
-// const filterItems: Array<filterType> = [
-//     { name: 'Нет фильтрации', type: 'nofilter' },
-//     { name: 'ID пользователя', type: 'user_id' },
-//     { name: 'Название', type: 'title' }]
 
-let PostsList: React.FC = () => {
+const PostsList: React.FC = () => {
     const { page, limit, fetching, data, total, error, filterOption } = useSelector((state: RootState) => state.posts.postList)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const onClickPageChange = React.useCallback((currentPage: number) => {
         dispatch(fetchPosts(currentPage, filterOption))
+        history.push({
+            pathname: '/users',
+            search: `page=${currentPage}`
+        })
     }, [dispatch])
 
     const filterChange = React.useCallback((filter: FilterType) => {
@@ -40,16 +43,19 @@ let PostsList: React.FC = () => {
             { error ? <div>Что-то пошло не так</div> :
                 <div className={styles.content}>
                     {fetching ? <Preloader /> :
-                        data.map((data) =>
-                            <div className={styles.item} key={data.id}>
-                                <Post post={data} />
-                            </div>
-                        )
+                        data.length < 1 ? <h2>По вашему запросу ничего не найдено</h2>
+                            :
+                            data.map((data) =>
+                                <div className={styles.item} key={data.id}>
+                                    <Post post={data} />
+                                </div>
+                            )
                     }
                 </div>
             }
             <Paginator currentPage={page} onPageChanged={onClickPageChange}
                 total={total} pageSize={limit} portionSize={10} />
+            <Link link='/posts/create' title='Создать' large />
         </div>
     )
 }

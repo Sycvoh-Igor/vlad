@@ -2,13 +2,14 @@
     padding: 10px 0;
     background-color: rgb(75, 173, 223);
 
-    &__container {
-        max-width: 80%;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {

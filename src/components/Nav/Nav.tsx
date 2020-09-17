@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.scss'
 
 
-let Nav: React.FC = () => {
+const Nav: React.FC = () => {
     const [menuOpen, setmenuOpen] = React.useState(false)
     const refMenu = React.useRef(null)
 

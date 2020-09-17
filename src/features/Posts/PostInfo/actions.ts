@@ -4,6 +4,9 @@ import {
     FETCH_ERROR,
     FETCH_REQUEST,
     FETCH_RESPONSE,
+    DELETE_ERROR,
+    DELETE_REQUEST,
+    DELETE_RESPONSE,
 } from './constants'
 import { createAction, createActionWithPayload } from "utils/redux";
 import { RootState } from "app/store";
@@ -13,6 +16,9 @@ import { Post } from './types';
 export const fetchRequest = createAction<typeof FETCH_REQUEST>(FETCH_REQUEST);
 export const fetchError = createAction<typeof FETCH_ERROR>(FETCH_ERROR);
 export const fetchResponse = createActionWithPayload<typeof FETCH_RESPONSE, Array<Post>>(FETCH_RESPONSE);
+export const deleteRequest = createAction<typeof DELETE_REQUEST>(DELETE_REQUEST);
+export const deleteError = createAction<typeof DELETE_ERROR>(DELETE_ERROR);
+export const deleteResponse = createActionWithPayload<typeof DELETE_RESPONSE, Array<Post> | null>(DELETE_RESPONSE);
 
 
 export const fetchPost = (id: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
@@ -29,7 +35,21 @@ export const fetchPost = (id: number): ThunkAction<void, RootState, unknown, Act
     }
 }
 
+export const deletePost = (id: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
+    dispatch(deleteRequest())
+    try {
+        const { data: { data } } = await instance.delete<{ data: null, meta: null, code: number }>(`posts/${id}`);
+
+        dispatch(deleteResponse(data));
+    } catch {
+        dispatch(deleteError())
+    }
+}
+
 export type PostActions =
     | ReturnType<typeof fetchRequest>
     | ReturnType<typeof fetchError>
     | ReturnType<typeof fetchResponse>
+    | ReturnType<typeof deleteRequest>
+    | ReturnType<typeof deleteError>
+    | ReturnType<typeof deleteResponse>

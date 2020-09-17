@@ -5,7 +5,7 @@ import { CardData } from "components/Card/types";
 
 
 
-let User: React.FC<UserProps> = ({ user }) => {
+const User: React.FC<UserProps> = ({ user }) => {
     const data = useMemo<CardData>(
         () => [
             { key: 1, label: 'Пользователь id', value: user.id },

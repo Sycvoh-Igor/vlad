@@ -8,9 +8,10 @@ export interface Post {
 }
 
 export interface PostState {
-    data: Array<Post>,
+    data: Array<Post> | null,
     fetching: boolean,
     error: boolean,
+    deleting: boolean
 }
 
 
