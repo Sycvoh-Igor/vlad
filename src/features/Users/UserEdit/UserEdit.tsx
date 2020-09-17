@@ -1,5 +1,5 @@
 import { PropsType, Data } from './types';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import UserForm from '../UserForm';
 import { RootState } from 'app/store';
@@ -9,7 +9,8 @@ import { editUser } from '../UserInfo/actions';
 
 
 const UserEdit: React.FC<PropsType> = () => {
-    let { data } = useSelector((state: RootState) => state.users.user)
+    const { data } = useSelector((state: RootState) => state.users.user)
+
     const dispatch = useDispatch()
     const history = useHistory()
 

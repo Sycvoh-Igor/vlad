@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import { Form, Formik } from 'formik';
 import * as Yup from "yup";
 import Title from 'components/Title';
@@ -7,17 +7,12 @@ import InputField from 'components/Forms/InputField/InputField';
 import RadioField from 'components/Forms/RadioField/RadioField';
 import { FormValues, PropsType } from './types';
 import Button from 'components/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { cleanCreatedUserId } from '../UserList/actions';
-import { RootState } from 'app/store';
-import { useHistory } from 'react-router-dom';
+
 
 
 
 const UserForm: React.FC<PropsType> = memo(({ action, data }) => {
-    const { createdUserId } = useSelector((state: RootState) => state.users.userList)
-    const dispatch = useDispatch()
-    const history = useHistory()
+
     const submit = (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
         const dataForm: FormValues = {
             name: values.name,
@@ -28,13 +23,6 @@ const UserForm: React.FC<PropsType> = memo(({ action, data }) => {
         action(dataForm, data?.id)
         setSubmitting(false)
     }
-
-    useEffect(() => {
-        if (createdUserId !== null) {
-            history.push(`/users/${createdUserId}`)
-            dispatch(cleanCreatedUserId())
-        }
-    }, [createdUserId])
 
     return <div>
         <Formik

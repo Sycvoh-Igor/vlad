@@ -38,7 +38,7 @@ const UserInfo: React.FC = () => {
 
     React.useEffect(() => {
         getUser()
-    }, [getUser])
+    }, [])
 
     return (
         <div className={styles.root}>
