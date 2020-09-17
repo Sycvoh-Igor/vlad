@@ -1,27 +1,32 @@
 import { PropsType, Data } from './types';
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import UserForm from '../UserForm';
 import { RootState } from 'app/store';
-import { useHistory } from 'react-router-dom';
-import { editUser } from '../UserInfo/actions';
+import { useHistory, useParams } from 'react-router-dom';
+import { editUser, fetchUser } from '../UserInfo/actions';
 
 
 
 const UserEdit: React.FC<PropsType> = () => {
     const { data } = useSelector((state: RootState) => state.users.user)
-
     const dispatch = useDispatch()
     const history = useHistory()
+    const params = useParams<{ id: string }>();
+    const id = +params.id
 
-    const edit = (data: Data, id?: number) => {
+    const edit = useCallback((data: Data, id?: number) => {
         dispatch(editUser(data, id))
         history.push({
             pathname: `/users/${id}`,
         })
-    }
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchUser(id))
+    }, [])
     return (
-        <>
+        <>  <div>1</div>
             { data ?
                 data.map((data) =>
                     <UserForm action={edit} data={data} key={data.id} />
