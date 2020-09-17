@@ -5,27 +5,27 @@ import Title from 'components/Title';
 import styles from './UserForm.module.scss'
 import InputField from 'components/Forms/InputField/InputField';
 import RadioField from 'components/Forms/RadioField/RadioField';
-import { FormValues } from './types';
+import { FormValues, PropsType } from './types';
 import Button from 'components/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUser, cleanCreatedUserId } from '../UserList/actions';
+import { cleanCreatedUserId } from '../UserList/actions';
 import { RootState } from 'app/store';
 import { useHistory } from 'react-router-dom';
 
 
 
-const UserForm: React.FC = memo(() => {
+const UserForm: React.FC<PropsType> = memo(({ action, data }) => {
     const { createdUserId } = useSelector((state: RootState) => state.users.userList)
     const dispatch = useDispatch()
     const history = useHistory()
     const submit = (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        const data: FormValues = {
+        const dataForm: FormValues = {
             name: values.name,
             email: values.email,
             status: values.status,
             gender: values.gender
         }
-        dispatch(createUser(data))
+        action(dataForm, data?.id)
         setSubmitting(false)
     }
 
@@ -38,7 +38,10 @@ const UserForm: React.FC = memo(() => {
 
     return <div>
         <Formik
-            initialValues={{ email: '', name: '', gender: '', status: '' }}
+            initialValues={{
+                email: data ? data.email : '', name: data ? data.name : '',
+                gender: data ? data.gender : '', status: data ? data.status : ''
+            }}
             validationSchema={Yup.object().shape({
                 email: Yup.string()
                     .email("Email not valid")
@@ -49,15 +52,15 @@ const UserForm: React.FC = memo(() => {
             })}
             onSubmit={submit}
         >
-            {({ isSubmitting, isValid }) => (
+            {({ isSubmitting, isValid, values }) => (
                 <div className={styles.root}>
                     <Title title='Создание пользователя' />
                     <Form>
-                        <InputField type='text' name='name' title='Имя' />
-                        <InputField type='email' name='email' title='Email' />
-                        <RadioField type='radio' name='status' value1='Active' value2='Inactive' />
-                        <RadioField type='radio' name='gender' value1='Male' value2='Female' />
-                        <Button type='submit' title='Create' disabled={isSubmitting || !isValid} />
+                        <InputField type='text' name='name' title='Имя' value={values.name} />
+                        <InputField type='email' name='email' title='Email' value={values.email} />
+                        <RadioField type='radio' name='status' value1='Active' value2='Inactive' checked={values.status} />
+                        <RadioField type='radio' name='gender' value1='Male' value2='Female' checked={values.gender} />
+                        <Button type='submit' title={data ? 'Edit' : 'Create'} disabled={isSubmitting || !isValid} />
                     </Form>
 
                 </div>

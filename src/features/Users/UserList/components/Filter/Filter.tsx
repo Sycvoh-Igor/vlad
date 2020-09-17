@@ -3,6 +3,7 @@ import InputField from 'components/Forms/InputField/InputField'
 import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import { FilterOption, filterType, PropsType } from './types'
+import styles from './Filter.module.scss'
 
 const usersSearchFormValidate = (values: any) => {
     const errors = {}
@@ -33,14 +34,14 @@ const FilterForm: React.FC<PropsType> = React.memo(({ onFilterChanged }) => {
                 <Form>
                     <InputField type='text' name='name' title='Имя' />
                     <Field name="gender" as="select">
-                        <option value="">All</option>
-                        <option value="male">Only male</option>
-                        <option value="female">Only female</option>
+                        <option className={styles.option} value="">All</option>
+                        <option className={styles.option} value="male">Only male</option>
+                        <option className={styles.option} value="female">Only female</option>
                     </Field>
                     <Field name="status" as="select">
-                        <option value="">All</option>
-                        <option value="active">Only active</option>
-                        <option value="inacrtive">Only inactive</option>
+                        <option className={styles.option} value="">All</option>
+                        <option className={styles.option} value="active">Only active</option>
+                        <option className={styles.option} value="inacrtive">Only inactive</option>
                     </Field>
                     <Button type='submit' title='Find' disabled={isSubmitting} />
                 </Form>

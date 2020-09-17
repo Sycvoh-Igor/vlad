@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import Preloader from 'components/preloader/Preloader';
 import { RootState } from "app/store";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,13 +1,31 @@
-import { PropsType } from './types'
+import { PropsType, Data } from './types';
 import React from 'react'
-import styles from './UserEdit.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import UserForm from '../UserForm';
+import { RootState } from 'app/store';
+import { useHistory } from 'react-router-dom';
+import { editUser } from '../UserInfo/actions';
 
 
 
 const UserEdit: React.FC<PropsType> = () => {
+    let { data } = useSelector((state: RootState) => state.users.user)
+    const dispatch = useDispatch()
+    const history = useHistory()
 
+    const edit = (data: Data, id?: number) => {
+        dispatch(editUser(data, id))
+        history.push({
+            pathname: `/users/${id}`,
+        })
+    }
     return (
-        <div className={styles.root}>Edit</div>
+        <>
+            { data ?
+                data.map((data) =>
+                    <UserForm action={edit} data={data} key={data.id} />
+                ) : null}
+        </>
     )
 }
 

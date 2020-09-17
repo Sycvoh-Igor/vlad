@@ -9,10 +9,24 @@ export interface User {
 }
 
 export interface UserState {
-    data: Array<User> | null,
+    data?: Array<User> | null,
     fetching: boolean,
     error: boolean,
     deleting: boolean,
+    edititng: boolean
+}
+
+export interface FormValues {
+    name: string;
+    email: string;
+    status: string;
+    gender: string;
+}
+
+export interface ResponseEdit {
+    code: number,
+    meta: null,
+    data: User[]
 }
 
 

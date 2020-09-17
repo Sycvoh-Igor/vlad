@@ -4,5 +4,5 @@ export interface PropsType {
     value?: string,
     title?: string
     component?: string
-    defaultValue?: string
+    // defaultValue?: string
 }

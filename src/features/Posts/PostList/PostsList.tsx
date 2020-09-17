@@ -22,7 +22,7 @@ const PostsList: React.FC = () => {
     const onClickPageChange = React.useCallback((currentPage: number) => {
         dispatch(fetchPosts(currentPage, filterOption))
         history.push({
-            pathname: '/users',
+            pathname: '/posts',
             search: `page=${currentPage}`
         })
     }, [dispatch])

@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/store';
 import styles from './UserInfo.module.scss'
 import Preloader from 'components/preloader/Preloader';
 import { fetchUser, deleteUser } from './actions';
-import { useHistory, useParams, withRouter } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import User from './components/User';
 import Title from 'components/Title';
 import Link from 'components/Link';
@@ -75,4 +75,4 @@ const UserInfo: React.FC = () => {
     )
 }
 
-export default withRouter(UserInfo)
+export default memo(UserInfo)

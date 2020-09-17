@@ -5,6 +5,9 @@ import {
     DELETE_ERROR,
     DELETE_REQUEST,
     DELETE_RESPONSE,
+    EDIT_ERROR,
+    EDIT_REQUEST,
+    EDIT_RESPONSE,
 } from './constants'
 import { UserState } from "./types";
 import { UserActions } from "./actions";
@@ -14,6 +17,7 @@ const initialState = {
     data: [],
     fetching: false,
     deleting: false,
+    edititng: false,
     error: false,
 } as UserState;
 
@@ -49,6 +53,23 @@ const userReducer = (state: UserState = initialState, action: UserActions): User
             return {
                 ...state,
                 deleting: false,
+                data
+            }
+        }
+        case EDIT_REQUEST: {
+            return { ...state, edititng: true, error: false }
+        }
+
+        case EDIT_ERROR: {
+            return { ...state, edititng: false, error: true }
+        }
+
+        case EDIT_RESPONSE: {
+            const { data } = action.payload
+            return {
+                ...state,
+                edititng: false,
+                error: false,
                 data
             }
         }

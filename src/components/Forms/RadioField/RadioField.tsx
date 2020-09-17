@@ -3,7 +3,7 @@ import { PropsType } from './types'
 import { Field, ErrorMessage } from "formik";
 import styles from './RadioField.module.scss'
 
-const RadioField: React.FC<PropsType> = ({ type, name, value1, value2 }) => {
+const RadioField: React.FC<PropsType> = ({ type, name, value1, value2, checked }) => {
     return (
         <div className={styles.root}>
             <div id="my-radio-group">Status</div>
@@ -11,13 +11,15 @@ const RadioField: React.FC<PropsType> = ({ type, name, value1, value2 }) => {
                 <label>
                     <Field type={type}
                         name={name}
-                        value={value1} />
+                        value={value1}
+                        checked={value1 === checked} />
                     {value1}
                 </label>
                 <label>
                     <Field type={type}
                         name={name}
-                        value={value2} />
+                        value={value2}
+                        checked={value2 === checked} />
                     {value2}
                 </label>
                 <ErrorMessage name={name} component='div' className={styles.error} />
