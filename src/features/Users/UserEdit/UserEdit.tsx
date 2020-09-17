@@ -15,16 +15,22 @@ const UserEdit: React.FC<PropsType> = () => {
     const params = useParams<{ id: string }>();
     const id = +params.id
 
-    const edit = useCallback((data: Data, id?: number) => {
-        dispatch(editUser(data, id))
-        history.push({
-            pathname: `/users/${id}`,
-        })
-    }, [dispatch])
+    const edit = useCallback(async (data: Data) => dispatch(
+        editUser(
+            data,
+            () => {
+                history.push({
+                    pathname: `/users/${id}`,
+                })
+            }
+        )
+    ), [dispatch, history])
 
     useEffect(() => {
         dispatch(fetchUser(id))
-    }, [])
+    }, [dispatch, id])
+
+    console.log(data);
     return (
         <>  <div>1</div>
             { data ?

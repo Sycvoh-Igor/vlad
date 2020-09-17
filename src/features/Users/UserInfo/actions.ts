@@ -30,11 +30,7 @@ export const editResponse = createActionWithPayload<typeof EDIT_RESPONSE, Respon
 export const fetchUser = (id: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
     dispatch(fetchRequest())
     try {
-        const { data: { data } } = await instance.get<{ data: Array<User> }>(`users`, {
-            params: {
-                id,
-            }
-        });
+        const { data: { data } } = await instance.get<{ data: Array<User> }>(`users/${id}`);
         dispatch(fetchResponse(data));
     } catch {
         dispatch(fetchError())
@@ -53,13 +49,15 @@ export const deleteUser = (id: number): ThunkAction<void, RootState, unknown, Ac
 }
 
 
-export const editUser = (formData: FormValues, id?: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
+export const editUser = (formData: FormValues, onSuccess: Function): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
     dispatch(editRequest())
     try {
-        const { data } = await instance.put<{ data: User[], meta: null, code: number }>(`users/${id}`, {
+        const { data } = await instance.put<{ data: User[], meta: null, code: number }>(`users/${formData.id}`, {
             ...formData
         });
         dispatch(editResponse(data));
+
+        onSuccess();
     } catch {
         dispatch(editError())
     }
