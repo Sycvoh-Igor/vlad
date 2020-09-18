@@ -5,11 +5,13 @@ import UserForm from '../UserForm';
 import { RootState } from 'app/store';
 import { useHistory, useParams } from 'react-router-dom';
 import { editUser, fetchUser } from '../UserInfo/actions';
+import Preloader from 'components/preloader/Preloader';
 
 
 
 const UserEdit: React.FC<PropsType> = () => {
     const { data } = useSelector((state: RootState) => state.users.user)
+    const { editing } = useSelector((state: RootState) => state.users.user)
     const dispatch = useDispatch()
     const history = useHistory()
     const params = useParams<{ id: string }>();
@@ -26,11 +28,12 @@ const UserEdit: React.FC<PropsType> = () => {
         dispatch(fetchUser(id))
     }, [])
     return (
-        <>  <div>1</div>
-            { data ?
+        <> {editing ? <Preloader /> :
+            data ?
                 data.map((data) =>
                     <UserForm action={edit} data={data} key={data.id} />
                 ) : null}
+
         </>
     )
 }

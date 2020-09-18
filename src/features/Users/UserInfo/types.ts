@@ -13,7 +13,7 @@ export interface UserState {
     fetching: boolean,
     error: boolean,
     deleting: boolean,
-    edititng: boolean
+    editing: boolean
 }
 
 export interface FormValues {

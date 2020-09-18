@@ -17,7 +17,7 @@ const initialState = {
     data: [],
     fetching: false,
     deleting: false,
-    edititng: false,
+    editing: false,
     error: false,
 } as UserState;
 
@@ -57,18 +57,18 @@ const userReducer = (state: UserState = initialState, action: UserActions): User
             }
         }
         case EDIT_REQUEST: {
-            return { ...state, edititng: true, error: false }
+            return { ...state, editing: true, error: false }
         }
 
         case EDIT_ERROR: {
-            return { ...state, edititng: false, error: true }
+            return { ...state, editing: false, error: true }
         }
 
         case EDIT_RESPONSE: {
             const { data } = action.payload
             return {
                 ...state,
-                edititng: false,
+                editing: false,
                 error: false,
                 data
             }
