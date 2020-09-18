@@ -17,6 +17,7 @@ export interface UserState {
 }
 
 export interface FormValues {
+    id?: number;
     name: string;
     email: string;
     status: string;

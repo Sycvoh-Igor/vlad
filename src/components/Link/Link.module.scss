@@ -8,19 +8,18 @@
     cursor: pointer;
     outline: none;
     border: none;
-
-    &--lg {
-        font-size: 2rem;
-    }
-
     &:hover,
     &:active {
         color: #000;
     }
+}
 
-    &--pagination {
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-    }
+.large {
+    font-size: 2rem;
+}
+
+.pagination {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
 }
