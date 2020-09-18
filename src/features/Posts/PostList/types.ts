@@ -27,7 +27,8 @@ export interface PostState {
     error: boolean,
     filterOption: FilterType,
     creating: boolean,
-    createdPostId: number | null
+    createdPostId: number | null,
+    userShouldExist: boolean
 }
 
 
@@ -47,7 +48,7 @@ type paginationType = {
 }
 
 export type FilterType = {
-    userId?: number | null,
+    userId?: number | null | string,
     title?: string
 }
 
@@ -58,7 +59,7 @@ export interface ResponseCreate {
 }
 
 export interface FormValues {
-    user_id: number | null;
+    user_id: number | null | string;
     title: string;
     body: string;
 }

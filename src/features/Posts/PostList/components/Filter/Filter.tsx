@@ -1,8 +1,9 @@
 import Button from 'components/Button'
-import InputField from 'components/Forms/InputField/InputField'
-import { Form, Formik } from 'formik'
+import Input from 'components/Forms/Input'
+import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import { FilterType, PropsType } from './types'
+import styles from './Filter.module.scss'
 
 const usersSearchFormValidate = (values: any) => {
     const errors = {}
@@ -14,24 +15,35 @@ const usersSearchFormValidate = (values: any) => {
 const FilterForm: React.FC<PropsType> = React.memo(({ onFilterChanged }) => {
 
     const submit = (values: FilterType, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        const filter: FilterType = {
-            userId: values.userId,
-            title: values.title,
-        }
-        onFilterChanged(filter)
+
+        onFilterChanged(values)
         setSubmitting(false)
     }
 
     return <div>
         <Formik
-            initialValues={{ userId: null, title: '' }}
+            initialValues={{ userId: '', title: '' }}
             validate={usersSearchFormValidate}
             onSubmit={submit}
         >
             {({ isSubmitting }) => (
                 <Form>
-                    <InputField type='text' name='userId' title='UserId' />
-                    <InputField type='text' name='title' title='Название' />
+                    <div className={styles.field}>
+                        <Field
+                            name='userId'
+                            component={Input}
+                            label="UserId"
+                            type='text'
+                        />
+                    </div>
+                    <div className={styles.field}>
+                        <Field
+                            name='title'
+                            component={Input}
+                            label="Название"
+                            type='text'
+                        />
+                    </div>
                     <Button type='submit' title='Find' disabled={isSubmitting} />
                 </Form>
             )}

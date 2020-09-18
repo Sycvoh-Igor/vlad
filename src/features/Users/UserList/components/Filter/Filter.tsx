@@ -1,9 +1,10 @@
 import Button from 'components/Button'
-import InputField from 'components/Forms/InputField/InputField'
 import { Field, Form, Formik } from 'formik'
 import React from 'react'
-import { FilterOption, filterType, PropsType } from './types'
+import { filterType, PropsType } from './types'
 import styles from './Filter.module.scss'
+import Input from 'components/Forms/Input'
+import Select from 'components/Forms/Select'
 
 const usersSearchFormValidate = (values: any) => {
     const errors = {}
@@ -15,12 +16,8 @@ const usersSearchFormValidate = (values: any) => {
 const FilterForm: React.FC<PropsType> = React.memo(({ onFilterChanged }) => {
 
     const submit = (values: filterType, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        const filter: FilterOption = {
-            name: values.name,
-            gender: values.gender,
-            status: values.status
-        }
-        onFilterChanged(filter)
+
+        onFilterChanged(values)
         setSubmitting(false)
     }
 
@@ -32,17 +29,36 @@ const FilterForm: React.FC<PropsType> = React.memo(({ onFilterChanged }) => {
         >
             {({ isSubmitting }) => (
                 <Form>
-                    <InputField type='text' name='name' title='Имя' />
-                    <Field name="gender" as="select">
-                        <option className={styles.option} value="">All</option>
-                        <option className={styles.option} value="male">Only male</option>
-                        <option className={styles.option} value="female">Only female</option>
-                    </Field>
-                    <Field name="status" as="select">
-                        <option className={styles.option} value="">All</option>
-                        <option className={styles.option} value="active">Only active</option>
-                        <option className={styles.option} value="inacrtive">Only inactive</option>
-                    </Field>
+                    <div className={styles.field}>
+                        <Field
+                            name='name'
+                            component={Input}
+                            label="Name"
+                            type='text'
+                        />
+                    </div>
+                    <div className={styles.field}>
+                        <Field
+                            name='status'
+                            component={Select}
+                            label="Status"
+                        >
+                            <option className={styles.option} value="">All</option>
+                            <option className={styles.option} value="Active">Active</option>
+                            <option className={styles.option} value="Inactive">Inactive</option>
+                        </Field>
+                    </div>
+                    <div className={styles.field}>
+                        <Field
+                            name='gender'
+                            component={Select}
+                            label="Gender"
+                        >
+                            <option className={styles.option} value="">All</option>
+                            <option className={styles.option} value="Male">Male</option>
+                            <option className={styles.option} value="Female">Female</option>
+                        </Field>
+                    </div>
                     <Button type='submit' title='Find' disabled={isSubmitting} />
                 </Form>
             )}

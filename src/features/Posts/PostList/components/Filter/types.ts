@@ -6,6 +6,6 @@ export type PropsType = {
 
 
 export type FilterType = {
-    userId?: number | null,
+    userId?: number | null | string,
     title?: string,
 }

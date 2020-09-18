@@ -5,7 +5,8 @@ import {
     CREATE_ERROR,
     CREATE_REQUEST,
     CREATE_RESPONSE,
-    CLEAN_POST_ID_REQUEST
+    CLEAN_POST_ID_REQUEST,
+    CLEAN_USER_SHOULD_EXIST
 } from './constants'
 import { PostState } from "./types";
 import { PostsActions } from "./actions";
@@ -25,7 +26,8 @@ const initialState = {
         status: ''
     },
     creating: false,
-    createdPostId: null
+    createdPostId: null,
+    userShouldExist: false
 } as PostState;
 
 const postsReducer = (state: PostState = initialState, action: PostsActions): PostState => {
@@ -75,11 +77,15 @@ const postsReducer = (state: PostState = initialState, action: PostsActions): Po
                 ...state,
                 creating: false,
                 error: false,
-                createdPostId: code === 201 ? data.id : null
+                createdPostId: code === 201 ? data.id : null,
+                userShouldExist: code === 422 ? true : false
             }
         }
         case CLEAN_POST_ID_REQUEST: {
             return { ...state, createdPostId: null }
+        }
+        case CLEAN_USER_SHOULD_EXIST: {
+            return { ...state, userShouldExist: false }
         }
 
         default:

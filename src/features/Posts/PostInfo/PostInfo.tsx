@@ -48,12 +48,11 @@ const PostInfo: React.FC = () => {
                 <div className={styles.content}>
                     {fetching ? <Preloader /> :
                         data ?
-                            data.map((data) =>
-                                <div className={styles.info} key={data.id}>
-                                    <Title title={data.title} />
-                                    <Post post={data} />
-                                </div>
-                            ) : null
+                            <div className={styles.info} key={data.id}>
+                                <Title title={data.title} />
+                                <Post post={data} />
+                            </div>
+                            : null
                     }
                     <div className={styles.links}>
                         <Link title='Редактировать' link={'/posts/' + id + '/edit'} large />

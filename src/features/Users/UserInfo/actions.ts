@@ -18,10 +18,10 @@ import { User, FormValues, ResponseEdit } from './types';
 
 export const fetchRequest = createAction<typeof FETCH_REQUEST>(FETCH_REQUEST);
 export const fetchError = createAction<typeof FETCH_ERROR>(FETCH_ERROR);
-export const fetchResponse = createActionWithPayload<typeof FETCH_RESPONSE, Array<User> | null>(FETCH_RESPONSE);
+export const fetchResponse = createActionWithPayload<typeof FETCH_RESPONSE, User | null>(FETCH_RESPONSE);
 export const deleteRequest = createAction<typeof DELETE_REQUEST>(DELETE_REQUEST);
 export const deleteError = createAction<typeof DELETE_ERROR>(DELETE_ERROR);
-export const deleteResponse = createActionWithPayload<typeof DELETE_RESPONSE, Array<User> | null>(DELETE_RESPONSE);
+export const deleteResponse = createActionWithPayload<typeof DELETE_RESPONSE, User | null>(DELETE_RESPONSE);
 export const editRequest = createAction<typeof EDIT_REQUEST>(EDIT_REQUEST);
 export const editError = createAction<typeof EDIT_ERROR>(EDIT_ERROR);
 export const editResponse = createActionWithPayload<typeof EDIT_RESPONSE, ResponseEdit>(EDIT_RESPONSE);
@@ -30,7 +30,7 @@ export const editResponse = createActionWithPayload<typeof EDIT_RESPONSE, Respon
 export const fetchUser = (id: number): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
     dispatch(fetchRequest())
     try {
-        const { data: { data } } = await instance.get<{ data: Array<User> }>(`users/${id}`);
+        const { data: { data } } = await instance.get<{ data: User }>(`users/${id}`);
         dispatch(fetchResponse(data));
     } catch {
         dispatch(fetchError())
@@ -52,7 +52,7 @@ export const deleteUser = (id: number): ThunkAction<void, RootState, unknown, Ac
 export const editUser = (formData: FormValues, onSuccess: Function): ThunkAction<void, RootState, unknown, Action<any>> => async dispatch => {
     dispatch(editRequest())
     try {
-        const { data } = await instance.put<{ data: User[], meta: null, code: number }>(`users/${formData.id}`, {
+        const { data } = await instance.put<{ data: User, meta: null, code: number }>(`users/${formData.id}`, {
             ...formData
         });
         dispatch(editResponse(data));

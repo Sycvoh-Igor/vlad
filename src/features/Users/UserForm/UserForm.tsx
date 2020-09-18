@@ -1,14 +1,13 @@
-import React, {memo, useEffect, useMemo} from 'react'
-import {ErrorMessage, Field, Form, Formik} from 'formik';
+import React, { memo, useEffect, useMemo } from 'react'
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 import Title from 'components/Title';
 import styles from './UserForm.module.scss'
-import InputField from 'components/Forms/InputField/InputField';
-import RadioField from 'components/Forms/RadioField/RadioField';
 import { FormValues, PropsType } from './types';
 import Button from 'components/Button';
 import Input from "components/Forms/Input";
 import ErrorField from "components/Forms/ErrorField";
+import RadioGroup from 'components/Forms/RadioGroup/RadioGroup';
 
 
 
@@ -61,18 +60,28 @@ const UserForm: React.FC<PropsType> = memo(({ action, data }) => {
         >
             {({ isSubmitting, isValid, values }) => (
                 <div className={styles.root}>
-                    <Title title='Создание пользователя' />
-                    <Form>
-                        <Field
-                            name='name'
-                            component={Input}
-                            label="Name"
-                        />
-                        <ErrorMessage name='name' component={ErrorField} />
-                        <InputField type='text' name='name' title='Имя' value={values.name} />
-                        <InputField type='email' name='email' title='Email' value={values.email} />
-                        <RadioField type='radio' name='status' value1='Active' value2='Inactive' checked={values.status} />
-                        <RadioField type='radio' name='gender' value1='Male' value2='Female' checked={values.gender} />
+                    <Title title={data ? 'Редактирование пользователя' : 'Создание пользователя'} />
+                    <Form className={styles.form}>
+                        <div className={styles.field}>
+                            <Field
+                                name='name'
+                                component={Input}
+                                label="Name"
+                                type='text'
+                            />
+                            <ErrorMessage name='name' component={ErrorField} />
+                        </div>
+                        <div className={styles.field}>
+                            <Field
+                                name='email'
+                                component={Input}
+                                label="Email"
+                                type='email'
+                            />
+                            <ErrorMessage name='email' component={ErrorField} />
+                        </div>
+                        <RadioGroup title='Status' name='status' values={['Active', 'Inactive']} checked={values.status} />
+                        <RadioGroup title='Gender' name='gender' values={['Male', 'Female']} checked={values.gender} />
                         <Button type='submit' title={data ? 'Edit' : 'Create'} disabled={isSubmitting || !isValid} />
                     </Form>
 

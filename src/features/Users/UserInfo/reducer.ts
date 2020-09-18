@@ -14,7 +14,7 @@ import { UserActions } from "./actions";
 
 
 const initialState = {
-    data: [],
+    data: {},
     fetching: false,
     deleting: false,
     editing: false,

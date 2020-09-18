@@ -1,9 +1,9 @@
 import React from 'react'
 import { PropsType } from './types'
 import { FieldProps } from "formik";
-import styles from './Input.module.scss'
+import styles from './Textarea.module.scss'
 
-const Input: React.FC<PropsType & FieldProps> = ({
+const Textarea: React.FC<PropsType & FieldProps> = ({
     label,
     className,
     field
@@ -12,10 +12,10 @@ const Input: React.FC<PropsType & FieldProps> = ({
         <div className={className}>
             <label>
                 {label && <div className={styles.label}>{label}</div>}
-                <input {...field} type='text' className={styles.input} />
+                <textarea {...field} className={styles.textarea} />
             </label>
         </div>
     )
 }
 
-export default Input
+export default Textarea

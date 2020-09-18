@@ -18,3 +18,15 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 992px) {
+    .item {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 756px) {
+    .item {
+        width: 80%;
+    }
+}

@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface UserState {
-    data?: Array<User> | null,
+    data: User | null,
     fetching: boolean,
     error: boolean,
     deleting: boolean,
@@ -27,7 +27,7 @@ export interface FormValues {
 export interface ResponseEdit {
     code: number,
     meta: null,
-    data: User[]
+    data: User
 }
 
 

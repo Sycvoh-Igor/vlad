@@ -1,57 +1,92 @@
-import React, { memo, useEffect } from 'react'
-import { Form, Formik } from 'formik';
+import React, { memo, useEffect, useMemo } from 'react'
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 import Title from 'components/Title';
 import styles from './PostForm.module.scss'
-import InputField from 'components/Forms/InputField/InputField';
-import { FormValues } from './types';
+import { FormValues, PropsType } from './types';
 import Button from 'components/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { createPost, cleanCreatedPostId } from '../PostList/actions';
-import { RootState } from 'app/store';
-import { useHistory } from 'react-router-dom';
+import Input from "components/Forms/Input";
+import ErrorField from "components/Forms/ErrorField";
+import Textarea from 'components/Forms/Textarea';
 
 
 
-const PostForm: React.FC = memo(() => {
-    const { createdPostId } = useSelector((state: RootState) => state.posts.postList)
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const submit = (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        const data: FormValues = {
-            user_id: values.user_id,
-            title: values.title,
-            body: values.body,
+
+const PostForm: React.FC<PropsType> = memo(({ action, data }) => {
+
+    const mountState = useMemo(
+        () => ({
+            mounted: false,
+        }),
+        []
+    )
+
+    const submit = async (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+        try {
+            await action(values, data?.id)
+        } finally {
+            if (mountState.mounted) {
+                setSubmitting(false)
+            }
         }
-        dispatch(createPost(data))
-        setSubmitting(false)
     }
 
-    useEffect(() => {
-        if (createdPostId !== null) {
-            history.push(`/posts/${createdPostId}`)
-            dispatch(cleanCreatedPostId())
-        }
-    }, [createdPostId])
+    useEffect(
+        () => {
+            mountState.mounted = true;
+            return () => {
+                mountState.mounted = false;
+            }
+        },
+        [mountState]
+    )
 
     return <div>
         <Formik
-            initialValues={{ user_id: null, title: '', body: '' }}
+            initialValues={{
+                id: data?.id,
+                user_id: data ? data.user_id : '', title: data ? data.title : '',
+                body: data ? data.body : ''
+            }}
             validationSchema={Yup.object().shape({
                 user_id: Yup.string().min(1).required("User_id is required"),
-                title: Yup.string().min(3).max(20).required("Title is required"),
-                body: Yup.string().min(20).max(240).required("Body is required"),
+                title: Yup.string().min(3).max(25).required("Title is required"),
+                body: Yup.string().min(20).max(440).required("Body is required"),
             })}
             onSubmit={submit}
         >
             {({ isSubmitting, isValid }) => (
                 <div className={styles.root}>
-                    <Title title='Создание статьи' />
-                    <Form>
-                        <InputField type='text' name='user_id' title='user_id' />
-                        <InputField type='text' name='title' title='Название' />
-                        <InputField type='text' name='body' component='textarea' title='Содержание' />
-                        <Button type='submit' title='Create' disabled={isSubmitting || !isValid} />
+                    <Title title={data ? 'Редактирование статьи' : 'Создание статьи'} />
+                    <Form className={styles.form}>
+                        <div className={styles.field}>
+                            <Field
+                                name='user_id'
+                                component={Input}
+                                label="Id пользователя"
+                                type='text'
+                            />
+                            <ErrorMessage name='user_id' component={ErrorField} />
+                        </div>
+                        <div className={styles.field}>
+                            <Field
+                                name='title'
+                                component={Input}
+                                label="Название"
+                                type='text'
+                            />
+                            <ErrorMessage name='title' component={ErrorField} />
+                        </div>
+                        <div className={styles.field}>
+                            <Field
+                                name='body'
+                                component={Textarea}
+                                label="Содержание"
+                                type='text'
+                            />
+                            <ErrorMessage name='body' component={ErrorField} />
+                        </div>
+                        <Button type='submit' title={data ? 'Edit' : 'Create'} disabled={isSubmitting || !isValid} />
                     </Form>
 
                 </div>

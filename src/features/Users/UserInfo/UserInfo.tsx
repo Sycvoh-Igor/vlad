@@ -49,13 +49,12 @@ const UserInfo: React.FC = () => {
                 <>
                     {fetching ? <Preloader /> :
                         data ?
-                            data.map((data) =>
-                                <div className={styles.info} key={data.id}>
-                                    <Title title={`Пользователь ${data.name}`} />
-                                    <User user={data} />
+                            <div className={styles.info} key={data.id}>
+                                <Title title={`Пользователь ${data.name}`} />
+                                <User user={data} />
 
-                                </div>
-                            ) : null
+                            </div>
+                            : null
                     }
                     <div className={styles.links}>
                         <Link title='Редактировать' link={'/users/' + id + '/edit'} large />

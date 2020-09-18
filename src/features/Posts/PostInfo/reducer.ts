@@ -5,16 +5,20 @@ import {
     DELETE_ERROR,
     DELETE_REQUEST,
     DELETE_RESPONSE,
+    EDIT_ERROR,
+    EDIT_REQUEST,
+    EDIT_RESPONSE
 } from './constants'
 import { PostState } from "./types";
 import { PostActions } from "./actions";
 
 
 const initialState = {
-    data: [],
+    data: {},
     fetching: false,
     error: false,
-    deleting: false
+    deleting: false,
+    editing: false
 } as PostState;
 
 const postReducer = (state: PostState = initialState, action: PostActions): PostState => {
@@ -49,6 +53,24 @@ const postReducer = (state: PostState = initialState, action: PostActions): Post
             return {
                 ...state,
                 deleting: false,
+                data
+            }
+        }
+
+        case EDIT_REQUEST: {
+            return { ...state, editing: true, error: false }
+        }
+
+        case EDIT_ERROR: {
+            return { ...state, editing: false, error: true }
+        }
+
+        case EDIT_RESPONSE: {
+            const { data } = action.payload
+            return {
+                ...state,
+                editing: false,
+                error: false,
                 data
             }
         }
