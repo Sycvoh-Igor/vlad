@@ -13,7 +13,7 @@ import {
 } from './constants'
 import { createAction, createActionWithPayload } from "utils/redux";
 import { RootState } from "app/store";
-import { instance } from "api/api";
+import instance from 'api';
 import { User, FormValues, ResponseEdit } from './types';
 
 export const fetchRequest = createAction<typeof FETCH_REQUEST>(FETCH_REQUEST);

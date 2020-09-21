@@ -12,7 +12,7 @@ import {
 import { User, metaType, FilterType, FormValues, ResponseCreate } from './types';
 import { createAction, createActionWithPayload } from "utils/redux";
 import { RootState } from "app/store";
-import { instance } from "api/api";
+import instance from 'api';
 import { ResponseList } from "types/types";
 
 export const fetchRequest = createAction<typeof FETCH_REQUEST>(FETCH_REQUEST);

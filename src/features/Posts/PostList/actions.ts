@@ -13,7 +13,7 @@ import {
 import { Post, FilterType, ResponseCreate, FormValues } from './types';
 import { createAction, createActionWithPayload } from "utils/redux";
 import { RootState } from "app/store";
-import { instance } from "api/api";
+import instance from 'api';
 import { ResponseList } from "types/types";
 import { metaType } from '../../Users/UserList/types';
 
