@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import Preloader from 'components/preloader/Preloader';
+import Preloader from 'components/preloader';
 import { RootState } from "app/store";
 import { useDispatch, useSelector } from "react-redux";
 import Paginator from 'components/paginator';

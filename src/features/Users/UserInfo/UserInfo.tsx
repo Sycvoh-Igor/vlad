@@ -2,7 +2,7 @@ import React, { useState, useCallback, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/store';
 import styles from './UserInfo.module.scss'
-import Preloader from 'components/preloader/Preloader';
+import Preloader from 'components/preloader';
 import { fetchUser, deleteUser } from './actions';
 import { useHistory, useParams } from 'react-router-dom';
 import User from './components/User';
