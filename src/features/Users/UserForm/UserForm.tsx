@@ -2,12 +2,12 @@ import React, { memo, useEffect, useMemo } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 import Title from 'components/Title';
-import styles from './UserForm.module.scss'
 import { FormValues, PropsType } from './types';
 import Button from 'components/Button';
 import Input from "components/Forms/Input";
 import ErrorField from "components/Forms/ErrorField";
 import RadioGroup from 'components/Forms/RadioGroup/RadioGroup';
+import styles from './UserForm.module.scss'
 
 
 

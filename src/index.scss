@@ -12,37 +12,34 @@ body {
     margin: 0;
 }
 
-a {
-    text-decoration: none;
-    transition: 0.3s ease-in-out;
-}
 
-.btn {
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 10px;
-    background-color: rgb(75, 173, 223);
-    transition: 0.3s ease-in-out;
-    color: #fff;
-    cursor: pointer;
-    outline: none;
-    border: none;
 
-    &--lg {
-        font-size: 2rem;
-    }
+// .btn {
+//     padding: 10px 20px;
+//     margin: 5px;
+//     border-radius: 10px;
+//     background-color: rgb(75, 173, 223);
+//     transition: 0.3s ease-in-out;
+//     color: #fff;
+//     cursor: pointer;
+//     outline: none;
+//     border: none;
 
-    &:hover,
-    &:active {
-        color: #000;
-    }
+//     &--lg {
+//         font-size: 2rem;
+//     }
 
-    &--pagination {
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-    }
-}
+//     &:hover,
+//     &:active {
+//         color: #000;
+//     }
+
+//     &--pagination {
+//         padding: 5px 10px;
+//         border: none;
+//         border-radius: 5px;
+//     }
+// }
 
 button:disabled {
     opacity: 0.5;
@@ -51,16 +48,6 @@ button:disabled {
     &:active {
         color: #fff;
     }
-}
-
-.App {
-    background-color: rgb(104, 207, 106);
-    min-height: 100vh;
-}
-
-
-main {
-    padding: 50px 0;
 }
 
 //helpers

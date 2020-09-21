@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo } from 'react'
 import Preloader from 'components/preloader/Preloader';
 import { RootState } from "app/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,4 +60,4 @@ const PostsList: React.FC = () => {
     )
 }
 
-export default PostsList
+export default memo(PostsList)

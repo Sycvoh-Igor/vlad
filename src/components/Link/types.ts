@@ -6,5 +6,5 @@ export type PropsType = {
     className?: string,
     large?: any,
     pagination?: any,
-    onclick?: (event: React.MouseEvent<HTMLElement>) => void,
+    action?: (event: React.MouseEvent<HTMLElement>) => void,
 }
